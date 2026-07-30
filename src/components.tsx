@@ -87,7 +87,7 @@ export function NavBar({
 export function SetCard({
   name, year, selected, image, onClick,
 }: {
-  name: string; year: number; selected: boolean; image?: { local: string; remote?: string }; onClick: () => void
+  name: string; year: number; selected: boolean; image?: { local: string | undefined; remote: string | undefined}; onClick: () => void
 }) {
   return (
     <button className={`set-card ${selected ? 'selected' : ''}`} onClick={onClick}>

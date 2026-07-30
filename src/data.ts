@@ -11,7 +11,7 @@ export function displayImage(assetId: string) {
   const asset = assetMap.get(assetId)
   return {
     local: asset ? `/assets/${asset.filename}` : undefined,
-    wikiPage: asset?.wikiPage,
+    remote: asset?.wikiPage,
   }
 }
 

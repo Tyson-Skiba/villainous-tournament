@@ -219,7 +219,7 @@ export default function App() {
 
                             <div className="character-info">
                               <strong>{assignment?.character}</strong>
-                              <small>{findSetForCharacter(assignment?.character)}</small>
+                              <small>{ assignment ? findSetForCharacter(assignment?.character) : '-'}</small>
                             </div>
                           </span>
                           <RefreshButton disabled={!canRefresh} onClick={() => {
