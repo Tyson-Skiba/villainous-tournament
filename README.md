@@ -2,16 +2,6 @@
 
 A mobile-first React + TypeScript app for randomly assigning Disney Villainous characters to players across multiple rounds.
 
-## Stack
-
-- Node.js
-- React
-- TypeScript
-- Vite
-- lucide-react icons
-- Browser `localStorage`
-- Plain CSS (no UI framework required)
-
 ## Run locally
 
 ```bash
@@ -75,59 +65,3 @@ It contains:
 - Stats can be viewed by player or character.
 - Settings and stats are accessible from the top navigation.
 - Light/dark mode persists.
-
-## Free hosting
-
-The project is a static Vite build and can be hosted on Netlify, Cloudflare Pages, GitHub Pages, or similar static hosting.
-
-For Netlify, the build settings are:
-
-- Build command: `npm run build`
-- Publish directory: `dist`
-
-No server/database is required for the current design because the game state and statistics live in each browser's localStorage.
-
-## Important image/licensing note
-
-The included remote image URLs are from the Disney Villainous Wiki/Fandom and are only an example data source. Before publishing the site publicly, verify that you have the right to redistribute/cache each image. The app itself is not affiliated with Disney or Ravensburger.
-
-
-## Downloading local images
-
-The asset downloader now uses `curl` first because Fandom's CDN can reject Node's
-default HTTP client. It sends a browser-style User-Agent and Fandom Referer, follows
-redirects, retries transient failures, and falls back to Node `fetch`.
-
-Run:
-
-```bash
-npm run download-assets
-```
-
-If your machine does not have `curl`, the script automatically tries `fetch`.
-
-Downloaded files are written to `public/assets/` and are included in the Vite build.
-
-
-## Complete set catalogue
-
-The catalogue now includes all 13 sets/repackaged sets listed in the current Disney Villainous Wiki catalogue, including the 2026 releases. Duplicate villains are intentionally retained across sets so owning multiple sets gives multiple physical copies for random selection.
-
-
-## Asset downloading
-
-`data/assets.json` stores stable Disney Villainous Wiki page URLs, not Fandom CDN
-image URLs. `scripts/download-assets.mjs` fetches each Wiki page, reads its
-`og:image`, and downloads that image into `public/assets/`.
-
-This avoids committing brittle `static.wikia.nocookie.net` URLs and avoids the
-403/404 failures caused by directly requesting those CDN paths.
-
-Run:
-
-```bash
-npm run download-assets
-```
-
-The generated files in `public/assets/` should be committed to the repository
-before deploying to Netlify.
