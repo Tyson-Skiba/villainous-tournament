@@ -1,0 +1,130 @@
+[
+  {
+    "id": "the_worst_takes_it_all",
+    "name": "The Worst Takes It All",
+    "year": 2018,
+    "villains": [
+      "Captain Hook",
+      "Jafar",
+      "Maleficent",
+      "Prince John",
+      "Queen of Hearts",
+      "Ursula"
+    ]
+  },
+  {
+    "id": "wicked_to_the_core",
+    "name": "Wicked to the Core",
+    "year": 2019,
+    "villains": [
+      "Dr. Facilier",
+      "Evil Queen",
+      "Hades"
+    ]
+  },
+  {
+    "id": "evil_comes_prepared",
+    "name": "Evil Comes Prepared",
+    "year": 2019,
+    "villains": [
+      "Ratigan",
+      "Scar",
+      "Yzma"
+    ]
+  },
+  {
+    "id": "perfectly_wretched",
+    "name": "Perfectly Wretched",
+    "year": 2020,
+    "villains": [
+      "Cruella De Vil",
+      "Mother Gothel",
+      "Pete"
+    ]
+  },
+  {
+    "id": "despicable_plots",
+    "name": "Despicable Plots",
+    "year": 2021,
+    "villains": [
+      "Gaston",
+      "Horned King",
+      "Lady Tremaine"
+    ]
+  },
+  {
+    "id": "bigger_and_badder",
+    "name": "Bigger and Badder",
+    "year": 2022,
+    "villains": [
+      "Lotso",
+      "Madam Mim",
+      "Syndrome"
+    ]
+  },
+  {
+    "id": "introduction_to_evil",
+    "name": "Introduction to Evil",
+    "year": 2023,
+    "villains": [
+      "Captain Hook",
+      "Maleficent",
+      "Prince John",
+      "Ursula"
+    ]
+  },
+  {
+    "id": "filled_with_fright",
+    "name": "Filled With Fright",
+    "year": 2023,
+    "villains": [
+      "Oogie Boogie"
+    ]
+  },
+  {
+    "id": "sugar_and_spite",
+    "name": "Sugar and Spite",
+    "year": 2024,
+    "villains": [
+      "King Candy",
+      "Shere Khan"
+    ]
+  },
+  {
+    "id": "treacherous_tides",
+    "name": "Treacherous Tides",
+    "year": 2025,
+    "villains": [
+      "Davy Jones",
+      "Tamatoa"
+    ]
+  },
+  {
+    "id": "success_at_any_cost",
+    "name": "Success at Any Cost",
+    "year": 2026,
+    "villains": [
+      "Ernesto de la Cruz",
+      "Prince Hans"
+    ]
+  },
+  {
+    "id": "darkness_brewing",
+    "name": "Darkness Brewing",
+    "year": 2026,
+    "villains": [
+      "Evil Queen",
+      "Maleficent",
+      "Sanderson Sisters",
+      "Ursula"
+    ]
+  },
+  {
+    "id": "come_we_fly",
+    "name": "Come, We Fly!",
+    "year": 2026,
+    "villains": [
+      "Sanderson Sisters"
+    ]
+  }
+]

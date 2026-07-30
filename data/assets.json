@@ -1,0 +1,254 @@
+[
+  {
+    "assetId": "the_worst_takes_it_all",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/The_Worst_Takes_It_All",
+    "filename": "the_worst_takes_it_all.jpg"
+  },
+  {
+    "assetId": "wicked_to_the_core",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Wicked_to_the_Core",
+    "filename": "wicked_to_the_core.jpg"
+  },
+  {
+    "assetId": "evil_comes_prepared",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Evil_Comes_Prepared",
+    "filename": "evil_comes_prepared.jpg"
+  },
+  {
+    "assetId": "perfectly_wretched",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Perfectly_Wretched",
+    "filename": "perfectly_wretched.jpg"
+  },
+  {
+    "assetId": "despicable_plots",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Despicable_Plots",
+    "filename": "despicable_plots.jpg"
+  },
+  {
+    "assetId": "bigger_and_badder",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Bigger_and_Badder",
+    "filename": "bigger_and_badder.jpg"
+  },
+  {
+    "assetId": "introduction_to_evil",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Introduction_to_Evil",
+    "filename": "introduction_to_evil.jpg"
+  },
+  {
+    "assetId": "filled_with_fright",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Filled_With_Fright",
+    "filename": "filled_with_fright.jpg"
+  },
+  {
+    "assetId": "sugar_and_spite",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Sugar_and_Spite",
+    "filename": "sugar_and_spite.jpg"
+  },
+  {
+    "assetId": "treacherous_tides",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Treacherous_Tides",
+    "filename": "treacherous_tides.jpg"
+  },
+  {
+    "assetId": "success_at_any_cost",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Success_at_Any_Cost",
+    "filename": "success_at_any_cost.jpg"
+  },
+  {
+    "assetId": "darkness_brewing",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Darkness_Brewing",
+    "filename": "darkness_brewing.jpg"
+  },
+  {
+    "assetId": "come_we_fly",
+    "type": "set",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Come%2C_We_Fly!",
+    "filename": "come_we_fly.jpg"
+  },
+  {
+    "assetId": "Captain Hook",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Captain_Hook",
+    "filename": "captain_hook.png"
+  },
+  {
+    "assetId": "Jafar",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Jafar",
+    "filename": "jafar.png"
+  },
+  {
+    "assetId": "Maleficent",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Maleficent",
+    "filename": "maleficent.png"
+  },
+  {
+    "assetId": "Prince John",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Prince_John",
+    "filename": "prince_john.png"
+  },
+  {
+    "assetId": "Queen of Hearts",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Queen_of_Hearts",
+    "filename": "queen_of_hearts.png"
+  },
+  {
+    "assetId": "Ursula",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Ursula",
+    "filename": "ursula.png"
+  },
+  {
+    "assetId": "Dr. Facilier",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Dr._Facilier",
+    "filename": "dr_facilier.png"
+  },
+  {
+    "assetId": "Evil Queen",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Evil_Queen",
+    "filename": "evil_queen.png"
+  },
+  {
+    "assetId": "Hades",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Hades",
+    "filename": "hades.png"
+  },
+  {
+    "assetId": "Ratigan",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Ratigan",
+    "filename": "ratigan.png"
+  },
+  {
+    "assetId": "Scar",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Scar",
+    "filename": "scar.png"
+  },
+  {
+    "assetId": "Yzma",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Yzma",
+    "filename": "yzma.png"
+  },
+  {
+    "assetId": "Cruella De Vil",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Cruella_De_Vil",
+    "filename": "cruella_de_vil.png"
+  },
+  {
+    "assetId": "Mother Gothel",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Mother_Gothel",
+    "filename": "mother_gothel.png"
+  },
+  {
+    "assetId": "Pete",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Pete",
+    "filename": "pete.png"
+  },
+  {
+    "assetId": "Gaston",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Gaston",
+    "filename": "gaston.png"
+  },
+  {
+    "assetId": "Horned King",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Horned_King",
+    "filename": "horned_king.png"
+  },
+  {
+    "assetId": "Lady Tremaine",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Lady_Tremaine",
+    "filename": "lady_tremaine.png"
+  },
+  {
+    "assetId": "Lotso",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Lotso",
+    "filename": "lotso.png"
+  },
+  {
+    "assetId": "Madam Mim",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Madam_Mim",
+    "filename": "madam_mim.png"
+  },
+  {
+    "assetId": "Syndrome",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Syndrome",
+    "filename": "syndrome.png"
+  },
+  {
+    "assetId": "Oogie Boogie",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Oogie_Boogie",
+    "filename": "oogie_boogie.png"
+  },
+  {
+    "assetId": "King Candy",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/King_Candy",
+    "filename": "king_candy.png"
+  },
+  {
+    "assetId": "Shere Khan",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Shere_Khan",
+    "filename": "shere_khan.png"
+  },
+  {
+    "assetId": "Davy Jones",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Davy_Jones",
+    "filename": "davy_jones.png"
+  },
+  {
+    "assetId": "Tamatoa",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Tamatoa",
+    "filename": "tamatoa.png"
+  },
+  {
+    "assetId": "Ernesto de la Cruz",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Ernesto_de_la_Cruz",
+    "filename": "ernesto_de_la_cruz.png"
+  },
+  {
+    "assetId": "Prince Hans",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Prince_Hans",
+    "filename": "prince_hans.png"
+  },
+  {
+    "assetId": "Sanderson Sisters",
+    "type": "villain",
+    "wikiPage": "https://disney-villainous.fandom.com/wiki/Sanderson_Sisters",
+    "filename": "sanderson_sisters.png"
+  }
+]
