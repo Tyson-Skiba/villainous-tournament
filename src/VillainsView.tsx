@@ -1,6 +1,9 @@
 import { useState } from "react"
 import villainObjectives from '../data/villains.json'
 import { villainSets, displayImage } from "./data"
+import { Villain } from "./types";
+
+const objectives = villainObjectives as Record<string, Villain>;
 
 export function VillainsView() {
   const [expanded, setExpanded] = useState<string[]>([])
@@ -30,7 +33,7 @@ export function VillainsView() {
               <div className="draw-table">
                 {set.villains.map(name => {
                   const img = displayImage(name, true)
-                  const info = villainObjectives[name]
+                  const info = objectives[name]
 
                   return (
                     <div className="draw-row villain-row" key={name}>

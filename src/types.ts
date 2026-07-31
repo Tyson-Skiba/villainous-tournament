@@ -53,3 +53,8 @@ export interface PersistedApp {
   stats: StoredStats
   theme: 'light' | 'dark'
 }
+
+export interface Villain {
+  objective: string;
+  set: string;
+}
