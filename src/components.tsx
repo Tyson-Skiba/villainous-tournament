@@ -159,8 +159,12 @@ export function CloseButton({ onClick }: { onClick: () => void }) {
   )
 }
 
-export function NextButton({ children, onClick }: { children: ReactNode; onClick: () => void }) {
-  return <Button onClick={onClick} icon={<ChevronRight size={18} />}>{children}</Button>
+export function PrimaryButton({ children, onClick }: { children: ReactNode; onClick: () => void }) {
+  return <Button onClick={onClick}>{children}</Button>
+}
+
+export function SecondaryButton({ children, onClick }: { children: ReactNode; onClick: () => void }) {
+  return <Button variant='secondary' onClick={onClick}>{children}</Button>
 }
 
 export function RefreshButton({ disabled, onClick }: { disabled?: boolean; onClick: () => void }) {

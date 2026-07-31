@@ -13,28 +13,54 @@ export function shuffle<T>(items: T[]) {
 export function buildAssignments(players: Player[], rounds: number, ownedSetIds: string[]) {
   const counts = villainCounts(ownedSetIds)
   const result: Record<string, Assignment[]> = {}
-  for (const player of players) result[player.id] = []
+  const usedByPlayer = new Map<string, Set<string>>()
+
+  for (const player of players) {
+    result[player.id] = []
+    usedByPlayer.set(player.id, new Set())
+  }
 
   for (let round = 1; round <= rounds; round++) {
     const available: string[] = []
     for (const [character, count] of counts) {
       for (let i = 0; i < count; i++) available.push(character)
     }
+
     const shuffled = shuffle(available)
     const usedThisRound = new Map<string, number>()
 
     for (const player of shuffle(players)) {
-      let pickIndex = shuffled.findIndex((character) => {
+      const alreadyUsed = usedByPlayer.get(player.id)!
+
+      // prefer characters this player hasn't had before
+      let candidates = shuffled.filter((character) => {
         const used = usedThisRound.get(character) ?? 0
-        return used < (counts.get(character) ?? 0)
+        const max = counts.get(character) ?? 0
+        return used < max && !alreadyUsed.has(character)
       })
-      if (pickIndex < 0) pickIndex = 0
-      const character = shuffled[pickIndex]
-      shuffled.splice(pickIndex, 1)
+
+      // if none left, fall back to any valid (only happens if rounds > unique characters)
+      if (!candidates.length) {
+        candidates = shuffled.filter((character) => {
+          const used = usedThisRound.get(character) ?? 0
+          const max = counts.get(character) ?? 0
+          return used < max
+        })
+      }
+
+      if (!candidates.length) continue
+
+      const character = candidates[0]
+      const idx = shuffled.indexOf(character)
+      if (idx >= 0) shuffled.splice(idx, 1)
+
       usedThisRound.set(character, (usedThisRound.get(character) ?? 0) + 1)
+      alreadyUsed.add(character)
+
       result[player.id].push({ round, character, refreshed: false })
     }
   }
+
   return result
 }
 
@@ -55,13 +81,21 @@ export function rerollAssignment(
     .map((a) => a.character)
 
   const current = target.character
+
+  const prev = game.assignments[playerId]?.find(a => a.round === round - 1)?.character
+
   const available: string[] = []
   for (const [character, count] of counts) {
     const used = assigned.filter((name) => name === character).length
     for (let i = used; i < count; i++) available.push(character)
   }
 
-  const candidates = available.filter((name) => name !== current)
+  let candidates = available.filter((name) => name !== current)
+
+  if (prev) {
+    candidates = candidates.filter(name => name !== prev)
+  }
+
   if (!candidates.length) return game
 
   const replacement = shuffle(candidates)[0]
@@ -76,6 +110,7 @@ export function rerollAssignment(
     refreshUsed: { ...game.refreshUsed, [playerId]: true },
   }
 }
+
 
 export function calculatePoints(place: number, playerCount: number) {
   return playerCount - place + 1
@@ -101,4 +136,39 @@ export function characterLeaderboard(stats: RoundStat[]) {
     map.set(row.character, current)
   }
   return [...map.values()].sort((a, b) => b.wins - a.wins || b.appearances - a.appearances || a.character.localeCompare(b.character))
+}
+
+function getPreviousCharacter(game: Game, playerId: string, round: number) {
+  if (round <= 1) return null
+  const prev = game.assignments[playerId].find(a => a.round === round - 1)
+  return prev?.character ?? null
+}
+
+function pickCharacterForRound(game: Game, playerId: string, round: number, availableCharacters: string[]) {
+  const prev = getPreviousCharacter(game, playerId, round)
+
+  const pool = prev
+    ? availableCharacters.filter(c => c !== prev)
+    : availableCharacters
+
+  if (pool.length === 0) {
+    throw new Error("No valid characters left — reduce number of rounds.")
+  }
+
+  return pool[Math.floor(Math.random() * pool.length)]
+}
+
+export function validateRounds(draftRounds: number, totalCopies: number) {
+  return totalCopies >= draftRounds;
+}
+
+export function ordinal(n: number) {
+  const mod10 = n % 10
+  const mod100 = n % 100
+
+  if (mod10 === 1 && mod100 !== 11) return `${n}st`
+  if (mod10 === 2 && mod100 !== 12) return `${n}nd`
+  if (mod10 === 3 && mod100 !== 13) return `${n}rd`
+
+  return `${n}th`
 }

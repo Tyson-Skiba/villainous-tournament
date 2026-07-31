@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Check, Crown, Trophy } from 'lucide-react'
 import { assetMap, displayImage, findSetForCharacter, selectedVillains, villainCounts, villainSets } from './data'
-import { Button, CloseButton, Counter, NavBar, NextButton, RefreshButton, SetCard, StepHeader } from './components'
-import { buildAssignments, characterLeaderboard, leaderboard, rerollAssignment } from './utils'
+import { Button, CloseButton, Counter, NavBar, PrimaryButton, SecondaryButton, RefreshButton, SetCard, StepHeader } from './components'
+import { buildAssignments, characterLeaderboard, leaderboard, ordinal, rerollAssignment, validateRounds } from './utils'
 import { loadApp, saveApp } from './storage'
 import type { Game, Player, RoundStat, Screen, StoredStats } from './types'
 
@@ -14,12 +14,14 @@ export default function App() {
   const [app, setApp] = useState(loadApp)
   const [screen, setScreen] = useState<Screen>(() => app.ownedSetIds.length ? 2 : 1)
   const [statsOverlay, setStatsOverlay] = useState(false)
+  const [collectionOverlay, setCollectionOverlay] = useState(false)
   const [statsMode, setStatsMode] = useState<'player' | 'character'>('player')
   const [game, setGame] = useState<Game | null>(null)
   const [draftOwned, setDraftOwned] = useState<string[]>(app.ownedSetIds)
   const [draftPlayers, setDraftPlayers] = useState<Player[]>(app.players.length >= 2 ? app.players : [newPlayer(1), newPlayer(2)])
   const [draftRounds, setDraftRounds] = useState(app.rounds || 2)
   const [placeDraft, setPlaceDraft] = useState<Record<string, number>>({})
+  const [placements, setPlacements] = useState<string[]>([])
 
   useEffect(() => {
     document.documentElement.dataset.theme = app.theme
@@ -30,9 +32,28 @@ export default function App() {
     saveApp(next)
   }
 
+  useEffect(() => {
+    if (!game) return
+
+    const draft: Record<string, number> = {}
+
+    placements.forEach((playerId, index) => {
+      draft[playerId] = index + 1
+    })
+
+    game.players.forEach(player => {
+      if (!(player.id in draft)) {
+        draft[player.id] = placements.length + 1
+      }
+    })
+
+    setPlaceDraft(draft)
+  }, [placements, game])
+
   const totalCopies = useMemo(() => selectedVillains(draftOwned).length, [draftOwned])
   const enoughCharacters = draftPlayers.length <= totalCopies && draftPlayers.every(p => p.name.trim())
   const currentRound = game?.currentRound ?? 1
+  const enoughCharactersPerRound = true; // validateRounds(draftRounds, totalCopies);
 
   function saveSets() {
     commit({ ...app, ownedSetIds: draftOwned })
@@ -52,53 +73,63 @@ export default function App() {
     }
     commit({ ...app, players: nextGame.players, rounds: draftRounds })
     setGame(nextGame)
+    setPlacements([])
     setPlaceDraft({})
     setScreen(3)
   }
 
   function submitRound() {
     if (!game) return
-    const places = game.players.map(p => placeDraft[p.id])
-    if (places.some(p => !p)) return
-    const results = { ...game.roundResults, [currentRound]: placeDraft }
+
+    const results = {
+      ...game.roundResults,
+      [currentRound]: placeDraft,
+    }
+
     if (currentRound < game.rounds) {
-      setGame({ ...game, roundResults: results, currentRound: currentRound + 1 })
+      setGame({
+        ...game,
+        roundResults: results,
+        currentRound: currentRound + 1,
+      })
+
+      setPlacements([])
       setPlaceDraft({})
       setScreen(4)
+
       return
     }
 
-    const rows: RoundStat[] = []
-    for (const player of game.players) {
-      const assignment = game.assignments[player.id].find(a => a.round === currentRound)
-      rows.push({
-        round: currentRound,
-        playerId: player.id,
-        playerName: player.name,
-        character: assignment?.character ?? '',
-        place: placeDraft[player.id],
-      })
-    }
-
-    // A game is committed as one batch; previous historical games remain.
     const gameRows = game.players.flatMap(player =>
       game.assignments[player.id].map(assignment => ({
         round: assignment.round,
         playerId: player.id,
         playerName: player.name,
         character: assignment.character,
-        place: results[assignment.round]?.[player.id] ?? (assignment.round === currentRound ? placeDraft[player.id] : 0),
+        place:
+          results[assignment.round]?.[player.id] ??
+          (assignment.round === currentRound
+            ? placeDraft[player.id]
+            : 0),
       }))
     ).filter(r => r.place > 0)
 
-    const nextStats: StoredStats = { rounds: [...app.stats.rounds, ...gameRows] }
-    commit({ ...app, stats: nextStats })
-    setGame({ ...game, roundResults: results })
-    setScreen(5)
-  }
+    commit({
+      ...app,
+      stats: {
+        rounds: [...app.stats.rounds, ...gameRows],
+      },
+    })
 
-  function updatePlace(playerId: string, value: number) {
-    setPlaceDraft(prev => ({ ...prev, [playerId]: value }))
+    setPlacements([])
+    setPlaceDraft({})
+
+    setGame({
+      ...game,
+      roundResults: results,
+    })
+
+    setScreen(5)
   }
 
   function goSettings() {
@@ -119,10 +150,20 @@ export default function App() {
     commit({ ...app, theme: app.theme === 'dark' ? 'light' : 'dark' })
   }
 
+  function togglePlacement(playerId: string) {
+    setPlacements(current => {
+      if (current.includes(playerId)) {
+        return current.filter(id => id !== playerId)
+      }
+
+      return [...current, playerId]
+    })
+  }
+
   return (
     <div className="app-shell">
       <NavBar
-        onSettings={goSettings}
+        onSettings={() => setCollectionOverlay(true)}
         onStats={() => setStatsOverlay(true)}
         theme={app.theme}
         onTheme={toggleTheme}
@@ -185,8 +226,14 @@ export default function App() {
               {!enoughCharacters && <span>Play count exceeds character count.</span>}
             </div>
 
+            {enoughCharactersPerRound ? null : (
+              <div className="character-capacity error">
+                <span>Not enough characters to avoid repeats — reduce rounds.</span>
+              </div>
+            )}
+
             <div className="sticky-action">
-              <Button disabled={!enoughCharacters} onClick={startGame}>Let's play</Button>
+              <Button disabled={!enoughCharacters} onClick={startGame}>Assign villains</Button>
             </div>
           </section>
         )}
@@ -202,7 +249,8 @@ export default function App() {
                     {game.players.map(player => {
                       const assignment = game.assignments[player.id].find(a => a.round === round)
                       const canRefresh = !game.refreshUsed[player.id]
-                      const img = assignment ? displayImage(assignment.character) : undefined
+                      const img = assignment ? displayImage(assignment.character, true) : undefined
+                      console.log(img)
                       return (
                         <div className="draw-row" key={player.id}>
                           <span className="player-name">{player.name}</span>
@@ -234,34 +282,73 @@ export default function App() {
               ))}
             </div>
             <div className="sticky-action">
-              <NextButton onClick={() => { setPlaceDraft({}); setScreen(4) }}>Track progress</NextButton>
+              <SecondaryButton onClick={() => { setPlaceDraft({}); setScreen(2) }}>Back</SecondaryButton>
+              <PrimaryButton onClick={() => { setPlacements([]); setPlaceDraft({}); setScreen(4) }}>Let's play</PrimaryButton>
             </div>
           </section>
         )}
 
         {screen === 4 && game && (
           <section>
-            <StepHeader step={`04 / ROUND ${currentRound}`} title="How did everyone place?" subtitle="Ties share the same position; the next position is skipped." />
-            <div className="round-progress"><span>Round {currentRound} of {game.rounds}</span><div className="progress"><i style={{ width: `${(currentRound / game.rounds) * 100}%` }} /></div></div>
-            <div className="results-table">
-              <div className="results-header"><span>Player</span><span>Character</span><span>Finish place</span></div>
+            <StepHeader
+              step={`04 / ROUND ${currentRound}`}
+              title="Round Results"
+              subtitle="Tap players in finishing order."
+            />
+
+            <div className="winner-grid">
               {game.players.map(player => {
-                const assignment = game.assignments[player.id].find(a => a.round === currentRound)
+                const assignment = game.assignments[player.id].find(
+                  a => a.round === currentRound
+                )
+
+                const img = assignment
+                  ? displayImage(assignment.character, true)
+                  : undefined
+
+                const place = placements.indexOf(player.id)
+
                 return (
-                  <div className="results-row" key={player.id}>
-                    <span>{player.name}</span>
+                  <button
+                    key={player.id}
+                    className={`winner-tile ${place >= 0 ? 'selected' : ''}`}
+                    onClick={() => togglePlacement(player.id)}
+                  >
+                    {place >= 0 && (
+                      <div className="placement-badge">
+                        {ordinal(place + 1)}
+                      </div>
+                    )}
+
+                    {img?.local && (
+                      <img
+                        src={img.local}
+                        alt=""
+                        onError={e => {
+                          if (img.remote) {
+                            e.currentTarget.src = img.remote
+                          }
+                        }}
+                      />
+                    )}
+
+                    <strong>{player.name}</strong>
+
                     <span>{assignment?.character}</span>
-                    <select value={placeDraft[player.id] ?? ''} onChange={e => updatePlace(player.id, Number(e.target.value))}>
-                      <option value="" disabled>—</option>
-                      {Array.from({ length: game.players.length }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}
-                    </select>
-                  </div>
+                  </button>
                 )
               })}
             </div>
+
             <div className="sticky-action">
-              <Button disabled={game.players.some(p => !placeDraft[p.id])} onClick={submitRound}>
-                {currentRound < game.rounds ? 'Next round' : 'Show leaderboard'}
+              <SecondaryButton onClick={() => {setScreen(2)}}>Quit</SecondaryButton>
+              <Button
+                disabled={placements.length === 0}
+                onClick={submitRound}
+              >
+                {currentRound === game.rounds
+                  ? 'Finish Tournament'
+                  : 'Next Round'}
               </Button>
             </div>
           </section>
@@ -273,7 +360,7 @@ export default function App() {
             <LeaderboardView players={game.players} game={game} />
             <div className="action-stack">
               <Button onClick={playAgain}>Play again</Button>
-              <Button variant="secondary" onClick={() => setScreen(6)}>Show stats</Button>
+              <Button variant="secondary" onClick={() => setStatsOverlay(true)}>Show stats</Button>
             </div>
           </section>
         )}
@@ -292,6 +379,58 @@ export default function App() {
             <CloseButton onClick={() => setStatsOverlay(false)} />
             <StepHeader step="STATS" title="The evil ledger" />
             <StatsView players={app.players} stats={app.stats} mode={statsMode} onMode={setStatsMode} />
+          </div>
+        </div>
+      )}
+
+      {collectionOverlay && (
+        <div className="overlay" role="dialog" aria-modal="true">
+          <div className="drawer large">
+            <CloseButton onClick={() => setCollectionOverlay(false)} />
+
+            <StepHeader
+              step="COLLECTION"
+              title="My Collection"
+              subtitle="Select every Villainous box you own."
+            />
+
+            <div className="set-grid">
+              {villainSets.map(set => (
+                <SetCard
+                  key={set.id}
+                  name={set.name}
+                  year={set.year}
+                  image={displayImage(set.id)}
+                  selected={draftOwned.includes(set.id)}
+                  onClick={() =>
+                    setDraftOwned(prev =>
+                      prev.includes(set.id)
+                        ? prev.filter(id => id !== set.id)
+                        : [...prev, set.id]
+                    )
+                  }
+                />
+              ))}
+            </div>
+
+            <div className="sticky-action">
+              <div className="selection-summary">
+                {selectedVillains(draftOwned).length} character copies available
+              </div>
+
+              <Button
+                onClick={() => {
+                  commit({
+                    ...app,
+                    ownedSetIds: draftOwned,
+                  })
+
+                  setCollectionOverlay(false)
+                }}
+              >
+                Save Collection
+              </Button>
+            </div>
           </div>
         </div>
       )}
@@ -349,7 +488,18 @@ function StatsView({
       ) : (
         <div className="stats-list">
           {characterRows.length ? characterRows.map((row, i) => (
-            <div className="stat-row" key={row.character}><strong>{i + 1}</strong><span>{row.character}</span><b>{row.wins} win{row.wins === 1 ? '' : 's'}</b><small>{row.appearances} appearances</small></div>
+            <div className="stat-row" key={row.character}>
+              <strong>{i + 1}</strong>
+              <span className='character-cell'>
+                <img src={displayImage(row.character, true).local} style={{ marginRight: '1rem' }} />
+                <span>
+                  {row.character}
+                  <br />
+                  <small>{row.appearances} appearances</small>
+                </span>
+              </span>
+              <b>{row.wins} win{row.wins === 1 ? '' : 's'}</b>
+            </div>
           )) : <EmptyStats />}
         </div>
       )}

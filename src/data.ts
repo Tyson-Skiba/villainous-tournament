@@ -7,10 +7,11 @@ export const villainAssets = assets as Asset[]
 
 export const assetMap = new Map(villainAssets.map((asset) => [asset.assetId, asset]))
 
-export function displayImage(assetId: string) {
+export function displayImage(assetId: string, face: boolean = false) {
   const asset = assetMap.get(assetId)
+
   return {
-    local: asset ? `/assets/${asset.filename}` : undefined,
+    local: asset ? `/assets/${(face ? 'faces/' : '')}${asset.filename}` : undefined,
     remote: asset?.wikiPage,
   }
 }
