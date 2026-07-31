@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Moon, Sun, Trophy, RefreshCw, Plus, Minus, ChevronRight, X, Check, LayoutDashboard, Settings } from 'lucide-react'
+import { Moon, Sun, Trophy, RefreshCw, Plus, Minus, Users, X, Check, LayoutDashboard, Settings } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 export function Button({
@@ -21,11 +21,13 @@ export function Button({
 export function NavBar({
   onSettings,
   onStats,
+  onVillains,
   theme,
   onTheme,
 }: {
   onSettings: () => void
   onStats: () => void
+  onVillains: () => void
   theme: 'light' | 'dark'
   onTheme: () => void
 }) {
@@ -71,6 +73,17 @@ export function NavBar({
             <button className="menu-item" onClick={onStats}>
               <Trophy size={18} />
               Play Statistics
+            </button>
+
+            <button
+              className="menu-item"
+              onClick={() => {
+                setOpen(false)
+                onVillains()
+              }}
+            >
+              <Users size={18} />
+              Villains
             </button>
 
             <button className="menu-item" onClick={onTheme}>

@@ -4,7 +4,9 @@ import { assetMap, displayImage, findSetForCharacter, selectedVillains, villainC
 import { Button, CloseButton, Counter, NavBar, PrimaryButton, SecondaryButton, RefreshButton, SetCard, StepHeader } from './components'
 import { buildAssignments, characterLeaderboard, leaderboard, ordinal, rerollAssignment, validateRounds } from './utils'
 import { loadApp, saveApp } from './storage'
+import { VillainsView } from './VillainsView'
 import type { Game, Player, RoundStat, Screen, StoredStats } from './types'
+import villainObjectives from '../data/villains.json'
 
 function newPlayer(index: number): Player {
   return { id: crypto.randomUUID(), name: `Player ${index}` }
@@ -22,6 +24,7 @@ export default function App() {
   const [draftRounds, setDraftRounds] = useState(app.rounds || 2)
   const [placeDraft, setPlaceDraft] = useState<Record<string, number>>({})
   const [placements, setPlacements] = useState<string[]>([])
+  const [villainsOverlay, setVillainsOverlay] = useState(false)
 
   useEffect(() => {
     document.documentElement.dataset.theme = app.theme
@@ -165,6 +168,7 @@ export default function App() {
       <NavBar
         onSettings={() => setCollectionOverlay(true)}
         onStats={() => setStatsOverlay(true)}
+        onVillains={() => setVillainsOverlay(true)}
         theme={app.theme}
         onTheme={toggleTheme}
       />
@@ -379,6 +383,28 @@ export default function App() {
             <CloseButton onClick={() => setStatsOverlay(false)} />
             <StepHeader step="STATS" title="The evil ledger" />
             <StatsView players={app.players} stats={app.stats} mode={statsMode} onMode={setStatsMode} />
+          </div>
+        </div>
+      )}
+
+      {villainsOverlay && (
+        <div
+          className="overlay"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="drawer large">
+            <CloseButton
+              onClick={() => setVillainsOverlay(false)}
+            />
+
+            <StepHeader
+              step="VILLAINS"
+              title="Villains"
+              subtitle="Browse every villain and their objective."
+            />
+
+ <VillainsView />
           </div>
         </div>
       )}

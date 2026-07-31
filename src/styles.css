@@ -317,3 +317,66 @@ h1 { font: 600 clamp(28px, 8vw, 42px)/1.06 'Unbounded', sans-serif; margin: 0 0 
   background: var(--accent);
   color: white;
 }
+
+.villain-row {
+  grid-template-columns: 1fr;
+}
+
+.villain-row .character-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.villain-row img {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+.villain-row .character-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.villain-row small {
+  margin-top: 2px;
+  color: var(--muted);
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.villain-set {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--panel);
+  margin-bottom: 18px;
+}
+
+.villain-set-header {
+  width: 100%;
+  border: 0;
+  background: var(--surface-3);
+  color: inherit;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 22px;
+  cursor: pointer;
+}
+
+.villain-set-header strong {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.villain-set-header small {
+  opacity: .65;
+}
+
+.villain-table {
+  padding: 10px 18px;
+}

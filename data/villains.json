@@ -1,0 +1,147 @@
+{
+   "Captain Hook":{
+      "objective":"Captain Hook must defeat Peter Pan at the Jolly Roger.\n\nIn order to achieve his Objective, you must unlock Hangman's Tree location by playing the Never Land Map. Peter Pan must be played, either by you or an opponent, to Hangman's Tree. You will then need to move him to Mermaid Lagoon, then to Skull Rock, and finally to the Jolly Roger, where you must defeat him to win the game.\n\nThe order of playing the Never Land Map and playing Peter Pan doesn't matter, either of them can be played first.",
+      "set":"The Worst Takes It All",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Captain_Hook"
+   },
+   "Jafar":{
+      "objective":"Jafar must unlock the Cave of Wonders, play the Magic Lamp, hypnotize Genie, and move the Magic Lamp to the Sultan's Palace. He can only win at the start of his turn.",
+      "set":"The Worst Takes It All",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Jafar"
+   },
+   "Maleficent":{
+      "objective":"Maleficent must play Curses and move them as needed so she has at least one Curse at each location in her realm. She can only win at the start of her turn.",
+      "set":"The Worst Takes It All",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Maleficent"
+   },
+   "Prince John":{
+      "objective":"Prince John must collect Power until he has at least 20 Power. He can only win at the start of his turn.",
+      "set":"The Worst Takes It All",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Prince_John"
+   },
+   "Queen of Hearts":{
+      "objective":"Queen of Hearts must play and convert Card Guards into Wickets, move them as needed so she has at least one Wicket at each location in her Realm, and play Take the Shot.",
+      "set":"The Worst Takes It All",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Queen_of_Hearts"
+   },
+   "Ursula":{
+      "objective":"Ursula must play the Trident and the Crown, and move them as needed so she has them at her Lair, defeating King Triton along the way. She can only win at the start of her turn.",
+      "set":"The Worst Takes It All",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Ursula"
+   },
+   "Dr. Facilier":{
+      "objective":"Dr. Facilier must play the Talisman and Rule New Orleans, and then play The Cards Will Tell to try and reveal Rule New Orleans from the Fortune pile.",
+      "set":"Wicked to the Core",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Dr._Facilier"
+   },
+   "Evil Queen":{
+      "objective":"Evil Queen must play four different Ingredients, bring Snow White into the Realm, get enough Poison to defeat her, and then play Take a Bite.",
+      "set":"Wicked to the Core",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Evil_Queen"
+   },
+   "Hades":{
+      "objective":"Hades must play Titans and move them so he has at least three untrapped Titans at Mount Olympus. He can only win at the start of his turn.",
+      "set":"Wicked to the Core",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Hades"
+   },
+   "Ratigan":{
+      "objective":"Ratigan, The Superior Mind, must play The Robot Queen, move it to Buckingham Palace, and start his turn with it there. To do so, he must accumulate 15 Power (or enough Cost-reducing Items), and draw The Robot Queen from his deck. He can only win this way at the start of his turn.\n\nIf The Robot Queen is discarded by Basil, Ratigan becomes The Rat, and his Objective changes. Now he must defeat Basil, either using Allies to Vanquish him, or a Marvelous Trap.\n\nRatigan has an Objective Tile to track which win condition he must meet, turning it over when his Objective changes. He is the only Villain with more than one possible Objective.",
+      "set":"Evil Comes Prepared",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Ratigan"
+   },
+   "Scar":{
+      "objective":"Scar must find and defeat Mufasa, and then defeat other Heroes in order to have at least 15 Strength in the Succession pile. He can only win at the start of his turn.",
+      "set":"Evil Comes Prepared",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Scar"
+   },
+   "Yzma":{
+      "objective":"Yzma must find Kuzco in one of her four Fate decks and play him. She must play Kronk, keep him on her side, and use him to defeat Kuzco. As Kronk does not have enough Strength on his own to defeat Kuzco, Yzma will also need to either attach the Dagger to Kronk, or have an Imperial Guards at his location.",
+      "set":"Evil Comes Prepared",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Yzma"
+   },
+   "Cruella De Vil":{
+      "objective":"Cruella De Vil must bring Puppy Tokens into her Realm, and then capture them until she has at least 99 puppies. To bring puppies into her Realm, she can activate Flashlight and Horace, and play Cruel and Here, Puppies. To capture them, she can activate Horace and Jasper, and play Bought and Paid For. Roadster and Spotted can also help get Puppy Tokens to advantageous locations, while Telephone and You Idiots! can get her Allies where they need to be. She can only win at the start of her turn.",
+      "set":"Perfectly Wretched",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Cruella_De_Vil"
+   },
+   "Mother Gothel":{
+      "objective":"Mother Gothel must acquire at least 10 Trust, which she can gain by moving Rapunzel to Rapunzel's Tower, defeating Heroes, and moving the Hair Brush, among other methods. She can only win at the start of her turn.",
+      "set":"Perfectly Wretched",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Mother_Gothel"
+   },
+   "Pete":{
+      "objective":"Pete must complete four different randomly selected Goals, one for each location in his Realm.\n\nThe possible Goals are:\n\n* Power Play: Spend at least 6 Power in one turn while Pete is at this location.\n* Round Up: Start your turn with Allies totaling at least 10 Strength at this location.\n* Rule the Realm: Start your turn with more Allies than Heroes at each location.\n* Strike It Rich: Start your turn with at least three Items at this location.\n* Win Big: Gain at least 4 Power from playing Play a Game at this location.\n\n### Clarifications\n\n* Win Big must be completed through the use of a single copy of Play a Game; it is not completed if you reach a total of 4 Power through playing more than one copy.\n* Power Play and Win Big are completed and taken off the board as soon as they are met.\n* Round Up, Rule the Realm, and Strike It Rich do not have to be immediately completed and taken off the board when they are met, but it can be risky not to, as they can be unmet.",
+      "set":"Perfectly Wretched",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Pete"
+   },
+   "Gaston":{
+      "objective":"Gaston must remove all 8 Obstacles from his board. He does so by using Effects or Conditions like Temper or Beautiful as Me, by activating Monsieur D'Arque, and by defeating Beast or Maurice. Belle, despite being the target of Gaston's affections, prevents Obstacle removal while she is in Gaston's Realm, so she will need to be defeated as well (if she is in play) before Gaston can continue progressing toward his Objective.\n\nObstacles can be replaced by several Fate Effects, such as It Is You, and Gaston can even replace Obstacles himself with Swoon, which is an extra Cost for the card, but can also strategically hide how close Gaston is to victory.",
+      "set":"Despicable Plots",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Gaston"
+   },
+   "Horned King":{
+      "objective":"Horned King must have a Cauldron Born at each location. To do so, he must play Ancient Soldiers and claim The Black Cauldron then activate it. The Black Cauldron can be claimed by playing Show Me the Black Cauldron or We Have Made a Bargain, or by defeating Hen Wen. Once The Black Cauldron is activated, Horned King may use it to swap Ancient Soldiers for Cauldron Born.",
+      "set":"Despicable Plots",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Horned_King"
+   },
+   "Lady Tremaine":{
+      "objective":"Lady Tremaine must marry either Drizella or Anastasia to The Prince. To do this, she must first unlock The Ballroom by playing Invitation from the King. Then she must have either Ball Gown Drizella or Ball Gown Anastasia (which can only be played to replace their informal versions already in play) in The Ballroom with The Prince, and then activate Wedding Bells when no Glass Slippers are present. Glass Slippers can only be removed by Lady Tremaine's Cane, while Heroes that block Ally movement or discard Items can either be Trapped, or defeated using You Little Thief! or Midnight.",
+      "set":"Despicable Plots",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Lady_Tremaine"
+   },
+   "Lotso":{
+      "objective":"Lotso must reduce the Strength of all four of his Heroes and move them to Caterpillar Room, and also have Buzz Lightyear, in any mode, in the same location. He can pull Heroes from his Fate deck using Big Baby and Welcome to Sunnyside; he can reduce the Strength of Heroes by playing certain cards and Vanquishing; he can move Heroes using Stretch, Not Age Appropriate and Something Snapped; he can control Buzz Lightyear using Stretch, Not Age Appropriate, and Original Factory Settings.",
+      "set":"Bigger and Badder",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Lotso"
+   },
+   "Madam Mim":{
+      "objective":"Madam Mim must defeat all of Merlin's Transformations. She can do so by either Vanquishing them with their corresponding Mim Transformations in her Villain deck, or by playing I'll Make the Rules.\n\nThe matchups for the Transformations are:\n\n* Chicken Mim beats Caterpillar Merlin\n* Crocodile Mim beats Turtle Merlin\n* Elephant Mim beats Walrus Merlin\n* Fox Mim beats Rabbit Merlin\n* Purple Dragon Mim beats Goat Merlin\n* Rattlesnake Mim or Tiger Mim beats Mouse Merlin\n* Rhinoceros Mim beats Crab Merlin",
+      "set":"Bigger and Badder",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Madam_Mim"
+   },
+   "Syndrome":{
+      "objective":"Syndrome must activate Syndrome's Remote while at Omnidroid v.10's location to defeat it, then clear his Realm of Heroes. To do this, he must first upgrade his Omnidroid v.X8 to Omnidroid v.X9, then to Omnidroid v.10, using them in Vanquish actions and removing Major Modifications from his Realm. He can use 15 Years Later or Mirage to find Heroes for his Omnidroids to Vanquish, or wait until an opponent Fates him. To defeat Heroes, he can use his Omnidroids, his many Allies, and Bio Probe.",
+      "set":"Bigger and Badder",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Syndrome"
+   },
+   "Oogie Boogie":{
+      "objective":"Oogie Boogie must convince Jack Skellington to return to Halloween Town, then defeat him with his Allies. He does this by playing Impostors of Sandy Claws, making Jack Skellington realize he should leave Christmas to him. Once four Impostors are successfully played, Jack Skellington returns, and must be Vanquished.",
+      "set":"Filled With Fright",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Oogie_Boogie"
+   },
+   "King Candy":{
+      "objective":"King Candy must cross the finish line (marked by the Start/Finish action) while Vanellope von Schweetz is in his Realm, and trapped in a Glitch, before Vanellope's Racer Token finishes. To do this, he must first get Vanellope into his Realm, either by being Fated, by Trickery, or by playing Ralph's Hero Medal and then defeating Wreck-It Ralph. Then, he must play a Glitch attached to Vanellope, which moves him and Vanellope's Racer token to the Start/Finish action. The Racer token covers the action it is on, blocking it from King Candy's usage.\n\nFrom that point on, King Candy and the Racer token will move forward each turn, and Villain and Fate cards can move both of them forward or back. King Candy wins if he crosses Start/Finish before the Racer token. If the Racer token finishes first, all Glitches are removed from Vanellope and returned to King Candy's hand. The Racer token remains on the action it landed on until King Candy starts the race again. He will need to attach another Glitch to Vanellope to do so.",
+      "set":"Sugar and Spite",
+      "wiki":"https://disney-villainous.fandom.com/wiki/King_Candy"
+   },
+   "Shere Khan":{
+      "objective":"Shere Khan must defeat Mowgli while there are no Fire Tokens in his Realm. To do this, he must bring Mowgli into his Realm, either by being Fated, by Deception / Trickery, or by playing Sure to Pick Up His Trail, which can also be used to defeat Mowgli, who can also be defeated in the usual way via a Vanquish action. However, he must hold off on defeating Mowgli until all Fire tokens are removed from his Realm, and he is guaranteed to have at least one, as Mowgli adds one when he is played. Fire tokens can be removed by playing It's Me, Shere Khan or activating Monkeys.",
+      "set":"Sugar and Spite",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Shere_Khan"
+   },
+   "Davy Jones":{
+      "objective":"Davy Jones must collect all 5 of his Treasure tokens. To do this, he must first put face-down Treasure tokens on Heroes in his Realm, via Do You Fear Death? and They're Here. Then he must flip the Treasure face up (via Bootstrap Bill, Hadras or The Black Spot), and finally defeat that Hero to claim it. When he has claimed all 5 Treasures, he wins. Heroes may only have one Treasure attached to them at a time.\n\nEach Treasure has an Ability:\n\n- Jack's Compass: This Hero gets +2 Strength.\n- Music Box: The Kraken cannot be used to defeat this Hero.\n- The Heart: When The Heart is collected, lose all Power.\n- The Key: When The Key is revealed, discard your hand.\n- Treasure Chest: Allies cannot be played to this location.",
+      "set":"Treacherous Tides",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Davy_Jones"
+   },
+   "Tamatoa":{
+      "objective":"Tamatoa must get Maui's Hook and the Heart of Te Fiti to his lair. He plays the Hook from his Villain deck, while the Heart must be taken from his Fate deck, and he can find it using Crustacean With the Power of Creation. Moana and Maui can steal the Items from him, and he will need to defeat them to reclaim them.",
+      "set":"Treacherous Tides",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Tamatoa"
+   },
+   "Ernesto de la Cruz":{
+      "objective":"Ernesto de la Cruz must have all six photo cards face down. He has multiple Villain cards that directly flip these cards, and he can also flip them by moving Miguel Rivera toward Allies.",
+      "set":"Success at Any Cost",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Ernesto_de_la_Cruz"
+   },
+   "Prince Hans":{
+      "objective":"Prince Hans must defeat Anna and Elsa at fully frozen locations. He has several cards that place Frozen rings on actions, and he may also place one Frozen ring after Vanquishing a Hero. He can wait for Anna or Elsa to be played in a Fate action, or fetch them himself with Prince Hans In Charge. When either are defeated at a fully frozen location, they are removed from the game, rather than put in the Fate discard pile. He can only defeat them via a Vanquish action, but he has several strong Allies for doing so, and he can reduce Elsa's Strength with You Froze Her Heart.",
+      "set":"Success at Any Cost",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Prince_Hans"
+   },
+   "Sanderson Sisters":{
+      "objective":"Sanderson Sisters must defeat a Hero with the Life Potion. To do this, they must first brew the Potion according to the recipe in their spellbook:\n\n* When a Witch is played to the Sanderson Sisters' Cottage, place the Witches' Cauldron tile near your Realm.\n* When you spend 5 or more Power on your turn, place Oil of Boil token on the Witches' Cauldron tile.\n* When you Vanquish a Hero, place Dead Man's Toe token on the Witches' Cauldron tile.\n* When you have a Witch or Ally in three different locations, place Newt Saliva token on the Witches' Cauldron tile.\n* When you have two or more Heroes at Dennisons' House, place Dash of Pox token on the Witches' Cauldron tile.\n* When you perform three Activate actions on the same turn, place Thine Own Tongue token on the Witches' Cauldron tile.\n* When all five ingredients are placed in the Witches' Cauldron tile, attach the Life Potion token to any Hero in play. (If no Hero is in play when the Life Potion is complete, attach it to the next Hero played.)\n\nSanderson Sisters must then defeat the Hero holding the Life Potion with all three Witches and the mover in the same location as that Hero. Notably, their Realm lacks a Vanquish action, so they must use Just Enough Left or Share the Life Force.\n\nOnly one ingredient may be added to the Witches' Cauldron per turn.",
+      "set":"Come, We Fly!",
+      "wiki":"https://disney-villainous.fandom.com/wiki/Sanderson_Sisters"
+   }
+}
