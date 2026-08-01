@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { Moon, Sun, Trophy, RefreshCw, Plus, Minus, Users, X, Check, LayoutDashboard, Settings } from 'lucide-react'
 import type { ReactNode } from 'react'
 
@@ -72,7 +72,7 @@ export function NavBar({
 
             <button className="menu-item" onClick={onStats}>
               <Trophy size={18} />
-              Play Statistics
+              Leaderboard
             </button>
 
             <button
@@ -127,16 +127,6 @@ export function SetCard({
       <div className="set-name">{name}</div>
       <div className="set-year">{year}</div>
     </button>
-  )
-}
-
-export function StepHeader({ step, title, subtitle }: { step: string; title: string; subtitle?: string }) {
-  return (
-    <header className="step-header">
-      <div className="eyebrow">{step}</div>
-      <h1>{title}</h1>
-      {subtitle && <p>{subtitle}</p>}
-    </header>
   )
 }
 

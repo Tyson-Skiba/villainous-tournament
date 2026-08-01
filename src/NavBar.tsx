@@ -53,7 +53,7 @@ export function NavBar({
 
             <button className="menu-item" onClick={onStats}>
               <Trophy size={18} />
-              Play Statistics
+              Leaderboard
             </button>
 
             <button className="menu-item" onClick={onTheme}>
