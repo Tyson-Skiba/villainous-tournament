@@ -11,7 +11,7 @@ export default defineConfig({
 			manifest: {
 				name: 'Villainous Tournament Round Randomiser',
 				short_name: 'Villainous Tournament',
-				theme_color: '#E7B76A',
+				theme_color: '#111016',
 				background_color: '#111016',
 				icons: [
 					{
@@ -28,6 +28,12 @@ export default defineConfig({
 						src: 'logo512.png',
 						type: 'image/png',
 						sizes: '512x512',
+					},
+					{
+						src: 'icon-512x512.png',
+						sizes: '512x512',
+						type: 'image/png',
+						purpose: 'maskable',
 					},
 				],
 			},
