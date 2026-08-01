@@ -93,7 +93,6 @@ export const Rounds: React.FC<RoundProps> = ({ game, draftOwned, setGame }) => {
 											onClick={() => setOverlay(assignment?.character!)}
 										/>
 									)}
-									{/* TODO: Objectives here */}
 								</div>
 							)
 						})}
