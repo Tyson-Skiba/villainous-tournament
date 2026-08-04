@@ -1,12 +1,9 @@
 import { StepHeader } from '../components'
-import { useAppContext } from '../context'
 import { StatsView } from '../views'
 
 interface StatsScreenProps {}
 
 export const StatsScreen: React.FC<StatsScreenProps> = () => {
-	const { app, statsMode, setStatsMode } = useAppContext()
-
 	return (
 		<section>
 			<StepHeader
