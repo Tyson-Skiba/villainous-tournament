@@ -1,12 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { displayImage, selectedVillains, villainSets } from './data'
-import { buildAssignments, leaderboard, ordinal, shareFixture } from './utils'
 import { useSearchParams } from './hooks/useUrlParams'
 import { FixtureView, StatsView, VillainsView } from './views'
-
-import type { Game, Player, Screen } from './types'
-import { NavBar } from './components/NavBar'
-import { Button, CloseButton, SetCard, StepHeader } from './components'
+import { Button, CloseButton, SetCard, StepHeader, NavBar } from './components'
 import {
 	LeaderboardScreen,
 	OwnedSetScreen,
