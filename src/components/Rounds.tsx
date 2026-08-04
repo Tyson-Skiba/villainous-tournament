@@ -1,14 +1,12 @@
 import { Trophy } from 'lucide-react'
-import { CloseButton, RefreshButton } from '../components'
+import { RefreshButton } from './Button'
 import { displayImage, findSetForCharacter } from '../data'
 import { rerollAssignment } from '../utils'
-import { useCallback, useState } from 'react'
-
 import type { Game, Villain } from '../types'
-
 import villains from '../../data/villains.json'
 import { StepHeader } from './StepHeader'
 import { useOverlay } from '../hooks/useOverlay'
+import { parseObjective } from '../utils/parseObjective'
 
 interface RoundProps {
 	game: Game
@@ -109,7 +107,11 @@ export const Rounds: React.FC<RoundProps> = ({ game, draftOwned, setGame }) => {
 						display: 'block',
 					}}
 				>
-					{overlay && objectives[overlay].objective}
+					{overlay && (
+						<div className="objective-text">
+							{parseObjective(objectives[overlay].objective)}
+						</div>
+					)}
 				</small>
 			</Overlay>
 		</div>

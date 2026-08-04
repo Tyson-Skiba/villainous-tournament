@@ -13,6 +13,7 @@ export default defineConfig({
 				short_name: 'Villainous Tournament',
 				theme_color: '#111016',
 				background_color: '#111016',
+				display: 'fullscreen',
 				icons: [
 					{
 						src: 'favicon.ico',
@@ -32,13 +33,13 @@ export default defineConfig({
 						purpose: 'any',
 					},
 					{
-						src: 'icon-192x192.png?v=2',
+						src: 'icon-192.png',
 						sizes: '192x192',
 						type: 'image/png',
 						purpose: 'maskable',
 					},
 					{
-						src: 'icon-512x512.png?v=2',
+						src: 'icon-512.png',
 						sizes: '512x512',
 						type: 'image/png',
 						purpose: 'maskable',

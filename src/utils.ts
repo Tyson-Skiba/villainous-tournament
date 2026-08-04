@@ -243,7 +243,7 @@ export function characterMatchups(
 	// Matchups can only be calculated reliably for new stats
 	// that have a gameId.
 	const valid = stats.filter((row) => row.gameId)
-	console.log(validateRounds)
+
 	const opponents = new Map<
 		string,
 		{

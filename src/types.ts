@@ -1,4 +1,5 @@
-export type Screen = 1 | 2 | 3 | 4 | 5 | 6
+export type Screen =
+	'owned-sets' | 'players' | 'tournament' | 'rounds' | 'leaderboard' | 'stats'
 
 export interface VillainSet {
 	id: string
@@ -59,4 +60,11 @@ export interface PersistedApp {
 export interface Villain {
 	objective: string
 	set: string
+}
+
+export interface PlayerResult {
+	player: Player
+	wins: number
+	points: number
+	rounds: number
 }

@@ -1,40 +1,24 @@
-import { Trophy, Flame, Target, Swords, BarChart3, Crown } from 'lucide-react'
-import { useCallback, useState } from 'react'
-import { displayImage } from './data'
-import { Player, StoredStats } from './types'
-import {
-	leaderboard,
-	characterLeaderboard,
-	characterAllRounders,
-	characterMatchups,
-} from './utils'
-import { CloseButton } from './components'
-import { StepHeader } from './components/StepHeader'
-import { useOverlay } from './hooks/useOverlay'
+import { Trophy, Swords, Crown } from 'lucide-react'
+import { useState } from 'react'
+import { displayImage } from '../data'
+import { leaderboard, characterLeaderboard, characterMatchups } from '../utils'
+import { StepHeader } from '../components'
+import { useOverlay } from '../hooks/useOverlay'
+import { useAppContext } from '../context'
 
-function EmptyStats() {
-	return (
-		<div className="empty-state">
-			<Trophy size={30} />
-			<p>No stats yet. Finish a game and they will appear here.</p>
-		</div>
-	)
-}
+interface StatsViewProps {}
 
-export function StatsView({
-	players,
-	stats,
-	mode,
-	onMode,
-}: {
-	players: Player[]
-	stats: StoredStats
-	mode: 'player' | 'character'
-	onMode: (m: 'player' | 'character') => void
-}) {
-	const playerRows = leaderboard(players, stats)
-	const characterRows = characterLeaderboard(stats.rounds)
-	const allRounders = characterAllRounders(stats.rounds)
+const EmptyStats = () => (
+	<div className="empty-state">
+		<Trophy size={30} />
+		<p>No stats yet. Finish a game and they will appear here.</p>
+	</div>
+)
+
+export const StatsView: React.FC<StatsViewProps> = () => {
+	const { app, statsMode, setStatsMode } = useAppContext()
+	const playerRows = leaderboard(app.players, app.stats)
+	const characterRows = characterLeaderboard(app.stats.rounds)
 
 	const [overlay, setOverlay, Overlay] = useOverlay()
 
@@ -43,33 +27,28 @@ export function StatsView({
 	)
 
 	const matchups = selectedCharacter
-		? characterMatchups(stats.rounds, selectedCharacter)
+		? characterMatchups(app.stats.rounds, selectedCharacter)
 		: []
-
-	const mostSelected = [...characterRows].sort(
-		(a, b) =>
-			b.appearances - a.appearances || a.character.localeCompare(b.character),
-	)
 
 	return (
 		<div className="stats-view">
 			<div className="segmented">
 				<button
-					className={mode === 'player' ? 'active' : ''}
-					onClick={() => onMode('player')}
+					className={statsMode === 'player' ? 'active' : ''}
+					onClick={() => setStatsMode('player')}
 				>
 					Player
 				</button>
 
 				<button
-					className={mode === 'character' ? 'active' : ''}
-					onClick={() => onMode('character')}
+					className={statsMode === 'character' ? 'active' : ''}
+					onClick={() => setStatsMode('character')}
 				>
 					Character
 				</button>
 			</div>
 
-			{mode === 'player' ? (
+			{statsMode === 'player' ? (
 				<div className="stats-list">
 					{playerRows.length ? (
 						playerRows.map((row, i) => (
