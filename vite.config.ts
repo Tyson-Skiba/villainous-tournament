@@ -8,12 +8,28 @@ export default defineConfig({
 		VitePWA({
 			registerType: 'autoUpdate',
 			manifestFilename: 'manifest.json',
+
 			manifest: {
+				id: 'app.netlify.villainous-tournament',
+
 				name: 'Villainous Tournament Round Randomiser',
 				short_name: 'Villainous Tournament',
+				description: 'A Disney Villainous character randomiser for game night.',
+
+				start_url: '/',
+				scope: '/',
+
+				display: 'standalone',
+				display_override: ['window-controls-overlay', 'standalone'],
+				orientation: 'portrait',
+
 				theme_color: '#111016',
 				background_color: '#111016',
-				display: 'fullscreen',
+
+				lang: 'en-AU',
+
+				categories: ['games', 'entertainment'],
+
 				icons: [
 					{
 						src: 'favicon.ico',
@@ -22,24 +38,24 @@ export default defineConfig({
 					},
 					{
 						src: 'logo192.png',
-						type: 'image/png',
 						sizes: '192x192',
+						type: 'image/png',
 						purpose: 'any',
 					},
 					{
 						src: 'logo512.png',
-						type: 'image/png',
 						sizes: '512x512',
+						type: 'image/png',
 						purpose: 'any',
 					},
 					{
-						src: 'icon-192.png',
+						src: 'logo192-maskable.png',
 						sizes: '192x192',
 						type: 'image/png',
 						purpose: 'maskable',
 					},
 					{
-						src: 'icon-512.png',
+						src: 'logo512-maskable.png',
 						sizes: '512x512',
 						type: 'image/png',
 						purpose: 'maskable',
