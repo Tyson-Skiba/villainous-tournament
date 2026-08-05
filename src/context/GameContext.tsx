@@ -4,6 +4,7 @@ import {
 	useContext,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from 'react'
 import { Game, Player } from '../types'
@@ -11,6 +12,7 @@ import { useAppContext } from './AppContext'
 import { newPlayer } from '../utils/newPlayer'
 import { buildAssignments } from '../utils'
 import { selectedVillains } from '../utils/data'
+import { useAuth } from '../hooks/useAuth'
 
 interface GameProviderProps {
 	game?: Game
@@ -52,6 +54,7 @@ const GameContext = createContext<GameProviderProps>({
 })
 
 export const GameProvider: React.FC<PropsWithChildren> = ({ children }) => {
+	const { user } = useAuth()
 	const { app, commit } = useAppContext()
 
 	const [game, setGame] = useState<Game | undefined>()
@@ -62,6 +65,20 @@ export const GameProvider: React.FC<PropsWithChildren> = ({ children }) => {
 	const [draftPlayers, setDraftPlayers] = useState<Player[]>(
 		app.players.length >= 2 ? app.players : [newPlayer(1), newPlayer(2)],
 	)
+
+	const prevUserRef = useRef(user)
+	useEffect(() => {
+		if (!app?.ownedSetIds?.length) return
+
+		const prevUser = prevUserRef.current
+		prevUserRef.current = user
+
+		if (!prevUser && user) {
+			setDraftOwned(app.ownedSetIds)
+			setDraftPlayers(app.players)
+			setDraftRounds(app.rounds)
+		}
+	}, [user, app?.ownedSetIds])
 
 	useEffect(() => {
 		if (!game) return

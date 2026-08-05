@@ -1,6 +1,6 @@
 // hooks/useAuth.ts
 import { useEffect, useState } from 'react'
-import { supabase } from './db'
+import { supabase } from '../utils/db'
 import type { User } from '@supabase/supabase-js'
 
 export const useAuth = () => {

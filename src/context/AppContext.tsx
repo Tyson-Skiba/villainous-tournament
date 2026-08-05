@@ -9,6 +9,8 @@ import { defaults, loadApp, saveApp } from '../storage'
 import { Screen, PersistedApp, AppTheme, OverlayType } from '../types'
 import { useSystemTheme } from '../hooks/useSystemTheme'
 import { getCssVariable } from '../utils/getCssProperty'
+import { useAuth } from '../hooks/useAuth'
+import { loadBlob, upsertBlob } from '../utils/db'
 
 interface AppProviderProps {
 	app: PersistedApp
@@ -37,6 +39,7 @@ const AppContext = createContext<AppProviderProps>({
 })
 
 export const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
+	const { user } = useAuth()
 	const [systemTheme] = useSystemTheme()
 	const [app, setApp] = useState(loadApp)
 	const [overlay, setOverlay] = useState<OverlayType>()
@@ -60,9 +63,29 @@ export const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
 		meta.setAttribute('content', colour)
 	}, [app.theme, systemTheme])
 
+	useEffect(() => {
+		if (!user) return
+
+		let cancelled = false
+
+		;(async () => {
+			const appData = await loadBlob()
+			if (cancelled) return
+			if (!appData) return
+
+			setApp(appData)
+			setScreen('players')
+		})()
+
+		return () => {
+			cancelled = true
+		}
+	}, [user?.id])
+
 	const commit = (next: typeof app) => {
 		setApp(next)
 		saveApp(next)
+		if (user) upsertBlob(next)
 	}
 
 	const toggleTheme = () => {

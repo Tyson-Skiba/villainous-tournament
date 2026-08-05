@@ -1,9 +1,10 @@
 import { ShieldAlert } from 'lucide-react'
-import { useAuth } from '../auth/useAuth'
+import { useAuth } from '../hooks/useAuth'
 import { Button, CloseButton, StepHeader } from '../components'
 import { useAppContext } from '../context'
 
 import React, { ChangeEvent, useState } from 'react'
+import { deleteBlob } from '../utils/db'
 
 interface SignUpFormProps {
 	openLoginView: () => void
@@ -90,6 +91,7 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ openSignUpView }) => {
 	const { signInWithEmail } = useAuth()
+	const { setScreen } = useAppContext()
 	const [error, setError] = useState('')
 	const [formData, setFormData] = useState({
 		email: '',
@@ -110,6 +112,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ openSignUpView }) => {
 						formData.password,
 					)
 					if (response.error) setError(response.error.message)
+					else setScreen('players')
 				}}
 				className="flex column padded"
 			>
@@ -170,10 +173,20 @@ const SignOut = () => {
 	if (!user) return null
 
 	return (
-		<div className="flex column">
+		<div className="flex column gap-1">
 			<h2 style={{ textAlign: 'center' }}>You are signed in as {user.email}</h2>
 			<Button variant="secondary" onClick={() => signOut()}>
 				Log out
+			</Button>
+			<Button
+				variant="danger"
+				onClick={() => {
+					// TODO: Show warning
+					//deleteBlob();
+					alert('TODO')
+				}}
+			>
+				Delete my data
 			</Button>
 		</div>
 	)
@@ -181,7 +194,7 @@ const SignOut = () => {
 
 export const LoginView: React.FC = () => {
 	const { setOverlay } = useAppContext()
-	const { user, signUp, signInWithEmail, signOut } = useAuth()
+	const { user } = useAuth()
 	const [mode, setMode] = useState<'new' | 'login'>('login')
 
 	let display = <></>

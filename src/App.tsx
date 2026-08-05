@@ -9,6 +9,7 @@ import {
 import { CloseButton, StepHeader, NavBar } from './components'
 import {
 	LeaderboardScreen,
+	LoadingScreen,
 	OwnedSetScreen,
 	PlayerScreen,
 	RoundsScreen,
@@ -16,11 +17,13 @@ import {
 	TournamentScreen,
 } from './screens'
 import { useAppContext, useGameContext } from './context'
+import { useAntiFlicker } from './hooks/useAntiFlicker'
 
 const App = () => {
 	const { screen, overlay, setOverlay } = useAppContext()
 	const { game, draftOwned } = useGameContext()
 	const [searchParams] = useSearchParams()
+	const render = useAntiFlicker(1000)
 
 	if (searchParams.get('fixture'))
 		return (
@@ -29,6 +32,8 @@ const App = () => {
 				draftOwned={draftOwned}
 			/>
 		)
+
+	if (!render) return <LoadingScreen />
 
 	return (
 		<div className="app-shell">
