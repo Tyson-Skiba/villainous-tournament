@@ -4,26 +4,14 @@ import {
 	Trophy,
 	Users,
 	CloudDownload,
-	Sun,
-	Moon,
+	KeyRound,
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { ThemeSelector } from './ThemeSelector'
+import { useAppContext } from '../context'
 
-interface NavBarProps {
-	onSettings: () => void
-	onStats: () => void
-	onVillains: () => void
-	theme: 'light' | 'dark'
-	onTheme: () => void
-}
-
-export const NavBar: React.FC<NavBarProps> = ({
-	onSettings,
-	onStats,
-	onVillains,
-	theme,
-	onTheme,
-}) => {
+export const NavBar: React.FC = () => {
+	const { setOverlay } = useAppContext()
 	const [open, setOpen] = useState(false)
 
 	useEffect(() => {
@@ -44,12 +32,10 @@ export const NavBar: React.FC<NavBarProps> = ({
 
 	return (
 		<nav className="navbar">
-			{/* Brand on left */}
 			<div className="brand">
 				VILLAINOUS <span>TOURNAMENT</span>
 			</div>
 
-			{/* Settings on right */}
 			<div className="nav-actions" style={{ position: 'relative' }}>
 				<button
 					className="icon-button settings-button"
@@ -61,12 +47,15 @@ export const NavBar: React.FC<NavBarProps> = ({
 
 				{open && (
 					<div className="settings-menu">
-						<button className="menu-item" onClick={onSettings}>
+						<button
+							className="menu-item"
+							onClick={() => setOverlay('collection')}
+						>
 							<LayoutDashboard size={18} />
 							My Collection
 						</button>
 
-						<button className="menu-item" onClick={onStats}>
+						<button className="menu-item" onClick={() => setOverlay('stats')}>
 							<Trophy size={18} />
 							Leaderboard
 						</button>
@@ -75,7 +64,7 @@ export const NavBar: React.FC<NavBarProps> = ({
 							className="menu-item"
 							onClick={() => {
 								setOpen(false)
-								onVillains()
+								setOverlay('villains')
 							}}
 						>
 							<Users size={18} />
@@ -86,17 +75,21 @@ export const NavBar: React.FC<NavBarProps> = ({
 							className="menu-item"
 							onClick={() => {
 								setOpen(false)
-								onVillains()
+								setOverlay('login')
 							}}
 						>
-							<CloudDownload size={18} />
-							Install app
+							<KeyRound size={18} />
+							My Account
 						</button>
 
+						{/*
 						<button className="menu-item" onClick={onTheme}>
 							{theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
 							Switch to {theme === 'dark' ? 'light' : 'dark'} mode
 						</button>
+						*/}
+
+						<ThemeSelector />
 					</div>
 				)}
 			</div>

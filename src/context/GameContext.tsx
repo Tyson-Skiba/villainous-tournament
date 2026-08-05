@@ -10,7 +10,7 @@ import { Game, Player } from '../types'
 import { useAppContext } from './AppContext'
 import { newPlayer } from '../utils/newPlayer'
 import { buildAssignments } from '../utils'
-import { selectedVillains } from '../data'
+import { selectedVillains } from '../utils/data'
 
 interface GameProviderProps {
 	game?: Game
@@ -33,7 +33,6 @@ interface GameProviderProps {
 }
 
 const GameContext = createContext<GameProviderProps>({
-	game: {} as any,
 	draftOwned: [],
 	placements: [],
 	draftRounds: 0,

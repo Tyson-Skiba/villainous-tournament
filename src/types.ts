@@ -1,6 +1,11 @@
 export type Screen =
 	'owned-sets' | 'players' | 'tournament' | 'rounds' | 'leaderboard' | 'stats'
 
+export type AppTheme = 'dark' | 'light' | 'system'
+
+export type OverlayType =
+	'stats' | 'collection' | 'villains' | 'login' | undefined
+
 export interface VillainSet {
 	id: string
 	name: string
@@ -54,7 +59,7 @@ export interface PersistedApp {
 	players: Player[]
 	rounds: number
 	stats: StoredStats
-	theme: 'light' | 'dark'
+	theme: AppTheme
 }
 
 export interface Villain {

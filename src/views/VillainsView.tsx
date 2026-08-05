@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import villainObjectives from '../../data/villains.json'
-import { villainSets, displayImage } from '../data'
+import { villainSets, displayImage } from '../utils/data'
 import { Villain } from '../types'
 import { ObjectiveCard } from '../components/ObjectiveCard'
 

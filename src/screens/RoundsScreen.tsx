@@ -1,6 +1,6 @@
 import { StepHeader, Button } from '../components'
 import { useAppContext, useGameContext } from '../context'
-import { displayImage } from '../data'
+import { displayImage } from '../utils/data'
 import { ordinal } from '../utils'
 
 interface RoundsScreenProps {}

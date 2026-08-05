@@ -1,6 +1,6 @@
 import { Trophy } from 'lucide-react'
 import { RefreshButton } from './Button'
-import { displayImage, findSetForCharacter } from '../data'
+import { displayImage, findSetForCharacter } from '../utils/data'
 import { rerollAssignment } from '../utils'
 import type { Game, Villain } from '../types'
 import villains from '../../data/villains.json'
@@ -33,7 +33,7 @@ export const TrophyButton: React.FC<ObjectiveButtonProps> = ({ onClick }) => {
 }
 
 export const Rounds: React.FC<RoundProps> = ({ game, draftOwned, setGame }) => {
-	const [overlay, setOverlay, Overlay] = useOverlay()
+	const [overlay, setOverlay, OverlayTray] = useOverlay()
 
 	return (
 		<div className="draw-rounds">
@@ -97,7 +97,7 @@ export const Rounds: React.FC<RoundProps> = ({ game, draftOwned, setGame }) => {
 					</div>
 				</div>
 			))}
-			<Overlay height={60}>
+			<OverlayTray height={60}>
 				<StepHeader step="Objective" title={overlay} />
 				<small
 					style={{
@@ -113,7 +113,7 @@ export const Rounds: React.FC<RoundProps> = ({ game, draftOwned, setGame }) => {
 						</div>
 					)}
 				</small>
-			</Overlay>
+			</OverlayTray>
 		</div>
 	)
 }

@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react'
-import { CloseButton } from '../components'
+import { CloseButton } from '../components/Button'
 
 interface OverlayState {
 	overlay: string

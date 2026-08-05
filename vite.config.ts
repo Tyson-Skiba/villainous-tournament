@@ -10,7 +10,7 @@ export default defineConfig({
 			manifestFilename: 'manifest.json',
 
 			manifest: {
-				id: 'app.netlify.villainous-tournament',
+				id: 'app.villainous-tournament.www',
 
 				name: 'Villainous Tournament Round Randomiser',
 				short_name: 'Villainous Tournament',
@@ -20,7 +20,7 @@ export default defineConfig({
 				scope: '/',
 
 				display: 'standalone',
-				display_override: ['window-controls-overlay', 'standalone'],
+				display_override: ['standalone'],
 				orientation: 'portrait',
 
 				theme_color: '#111016',

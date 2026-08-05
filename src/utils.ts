@@ -1,5 +1,5 @@
 import type { Assignment, Game, Player, RoundStat, StoredStats } from './types'
-import { villainCounts } from './data'
+import { villainCounts } from './utils/data'
 import { nativeCompress } from './utils/strings'
 
 export interface CharacterStats {

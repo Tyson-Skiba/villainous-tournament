@@ -1,4 +1,6 @@
+export * from './CollectionView'
 export * from './FixtureView'
 export * from './LeaderboardView'
+export * from './LoginView'
 export * from './StatsView'
 export * from './VillainsView'

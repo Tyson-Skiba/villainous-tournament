@@ -1,6 +1,6 @@
 import { StepHeader, SetCard, Button } from '../components'
 import { useAppContext, useGameContext } from '../context'
-import { villainSets, displayImage, selectedVillains } from '../data'
+import { villainSets, displayImage, selectedVillains } from '../utils/data'
 
 interface OwnedSetProps {}
 
