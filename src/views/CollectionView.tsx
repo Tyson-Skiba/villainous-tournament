@@ -49,7 +49,7 @@ export const CollectionView: React.FC = () => {
 								ownedSetIds: draftOwned,
 							})
 
-							setOverlay('collection')
+							setOverlay(undefined)
 						}}
 					>
 						Save Collection
