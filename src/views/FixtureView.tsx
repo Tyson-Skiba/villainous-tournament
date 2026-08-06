@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from 'react'
 import { nativeDecompress } from '../utils/strings'
-import { Game } from '../types'
+import { Game, GameResult } from '../types'
 import { Rounds } from '../components/Rounds'
 import { StepHeader } from '../components/StepHeader'
+import { LoadingScreen } from '../screens'
+import { useAppContext } from '../context'
 
 interface FixtureViewProps {
 	fixture: string
-	draftOwned: string[]
 }
 
-export const FixtureView: React.FC<FixtureViewProps> = ({
-	fixture,
-	draftOwned,
-}) => {
+export const FixtureView: React.FC<FixtureViewProps> = ({ fixture }) => {
+	const { activeLobby, lobbies } = useAppContext()
+	const [results, setResults] = useState<GameResult>()
 	const [game, setGame] = useState<Game | undefined>()
 
 	useEffect(() => {
@@ -22,7 +22,16 @@ export const FixtureView: React.FC<FixtureViewProps> = ({
 		})
 	}, [fixture])
 
-	if (!game) return <div>Loading</div>
+	useEffect(() => {
+		if (!activeLobby) return
+		return lobbies.waitForUpdates(activeLobby, (lobby) => {
+			if (lobby.results) setResults(lobby.results)
+		})
+	}, [activeLobby])
+
+	if (!game) return <LoadingScreen />
+
+	// TODO: On final update show leaderboard
 
 	return (
 		<div className="screen">
@@ -31,7 +40,7 @@ export const FixtureView: React.FC<FixtureViewProps> = ({
 				title="Your villains"
 				subtitle="One character per player per round. Click the trophy to see the villain objectives"
 			/>
-			<Rounds game={game} draftOwned={draftOwned} />
+			<Rounds game={game} results={results} />
 		</div>
 	)
 }

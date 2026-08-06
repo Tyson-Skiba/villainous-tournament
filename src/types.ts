@@ -1,5 +1,11 @@
 export type Screen =
-	'owned-sets' | 'players' | 'tournament' | 'rounds' | 'leaderboard' | 'stats'
+	| 'owned-sets'
+	| 'players'
+	| 'tournament'
+	| 'rounds'
+	| 'leaderboard'
+	| 'stats'
+	| 'lobby'
 
 export type AppTheme = 'dark' | 'light' | 'system'
 
@@ -72,4 +78,22 @@ export interface PlayerResult {
 	wins: number
 	points: number
 	rounds: number
+}
+
+export interface Lobby {
+	hostUid: string
+	started: boolean
+	stateVersion: number
+	created: number
+	results: GameResult
+}
+
+export interface LobbyPlayer {
+	id: string
+	name: string
+	joined: number
+}
+
+export interface GameResult {
+	[x: number]: Record<string, number>
 }

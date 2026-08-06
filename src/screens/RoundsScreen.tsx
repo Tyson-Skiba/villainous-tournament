@@ -2,11 +2,12 @@ import { StepHeader, Button } from '../components'
 import { useAppContext, useGameContext } from '../context'
 import { displayImage } from '../utils/data'
 import { ordinal } from '../utils'
+import { useSearchParams } from '../hooks/useUrlParams'
 
 interface RoundsScreenProps {}
 
 export const RoundsScreen: React.FC<RoundsScreenProps> = () => {
-	const { app, commit, setScreen } = useAppContext()
+	const { app, activeLobby, lobbies, commit, setScreen } = useAppContext()
 	const {
 		game,
 		placements,
@@ -24,6 +25,8 @@ export const RoundsScreen: React.FC<RoundsScreenProps> = () => {
 			...game.roundResults,
 			[currentRound]: placeDraft,
 		}
+
+		if (activeLobby) lobbies.update(activeLobby, results)
 
 		if (currentRound < game.rounds) {
 			setGame({
@@ -54,7 +57,7 @@ export const RoundsScreen: React.FC<RoundsScreenProps> = () => {
 				})),
 			)
 			.filter((r) => r.place > 0)
-
+		// TODO: Possiblity - do not commit for lobbied games??
 		commit({
 			...app,
 			stats: {

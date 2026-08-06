@@ -390,3 +390,15 @@ export async function shareFixture(game: Game) {
 
 	navigator.share(data)
 }
+
+export async function shareLobby(code: string) {
+	const url = `${window.location.protocol}//${window.location.host}?join=${code}`
+	const data = {
+		title: 'Villainous Tournament',
+		text: 'You have been invited to join a game',
+		url,
+	}
+
+	if (navigator.share) navigator.share(data)
+	else navigator.clipboard.writeText(url)
+}

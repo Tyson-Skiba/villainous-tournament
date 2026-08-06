@@ -378,6 +378,8 @@ h1 {
 	padding: 12px 14px;
 	background: var(--surface-2);
 	font-weight: 700;
+	justify-content: space-between;
+	display: flex;
 }
 .draw-table {
 	overflow: hidden;
@@ -1324,4 +1326,22 @@ h1 {
 
 .gap-1 {
 	gap: 1rem;
+}
+
+.lobby-code {
+	color: var(--button-text);
+	background: var(--accent);
+	border-radius: 0.75rem;
+	padding: 1rem;
+}
+
+.opacity50 {
+	opacity: 50%;
+}
+
+.rnd-winner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
 }

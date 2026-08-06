@@ -8,8 +8,10 @@ import {
 } from './views'
 import { CloseButton, StepHeader, NavBar } from './components'
 import {
+	JoinLobbyScreen,
 	LeaderboardScreen,
 	LoadingScreen,
+	LobbyScreen,
 	OwnedSetScreen,
 	PlayerScreen,
 	RoundsScreen,
@@ -26,12 +28,9 @@ const App = () => {
 	const render = useAntiFlicker(1000)
 
 	if (searchParams.get('fixture'))
-		return (
-			<FixtureView
-				fixture={searchParams.get('fixture')!}
-				draftOwned={draftOwned}
-			/>
-		)
+		return <FixtureView fixture={searchParams.get('fixture')!} />
+
+	if (searchParams.get('join')) return <JoinLobbyScreen />
 
 	if (!render) return <LoadingScreen />
 
@@ -49,6 +48,7 @@ const App = () => {
 				)}
 
 				{screen === 'stats' && <StatsScreen />}
+				{screen === 'lobby' && <LobbyScreen />}
 			</main>
 
 			{overlay === 'stats' && (

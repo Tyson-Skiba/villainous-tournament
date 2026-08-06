@@ -26,7 +26,7 @@ interface GameProviderProps {
 	enoughCharacters: boolean
 	enoughCharactersPerRound: boolean
 	setGame: (game: React.SetStateAction<Game | undefined>) => void
-	startGame: () => void
+	startGame: (allowCommit?: boolean) => Game
 	setDraftOwned: (owned: React.SetStateAction<string[]>) => void
 	setDraftPlayers: (players: React.SetStateAction<Player[]>) => void
 	setDraftRounds: (rounds: React.SetStateAction<number>) => void
@@ -45,7 +45,7 @@ const GameContext = createContext<GameProviderProps>({
 	enoughCharacters: true,
 	enoughCharactersPerRound: true,
 	setGame: () => null,
-	startGame: () => null,
+	startGame: () => ({}) as unknown as Game,
 	setDraftOwned: () => null,
 	setDraftPlayers: () => null,
 	setDraftRounds: () => null,
@@ -109,8 +109,8 @@ export const GameProvider: React.FC<PropsWithChildren> = ({ children }) => {
 	const currentRound = game?.currentRound ?? 1
 	const enoughCharactersPerRound = true // validateRounds(draftRounds, totalCopies);
 
-	const startGame = () => {
-		if (!enoughCharacters) return
+	const startGame = (allowCommit = true) => {
+		//if (!enoughCharacters) return
 		const assignments = buildAssignments(draftPlayers, draftRounds, draftOwned)
 		const nextGame: Game = {
 			gameId: crypto.randomUUID(),
@@ -125,10 +125,13 @@ export const GameProvider: React.FC<PropsWithChildren> = ({ children }) => {
 			currentRound: 1,
 		}
 
-		commit({ ...app, players: nextGame.players, rounds: draftRounds })
+		if (allowCommit)
+			commit({ ...app, players: nextGame.players, rounds: draftRounds })
 		setGame(nextGame)
 		setPlacements([])
 		setPlaceDraft({})
+
+		return nextGame
 	}
 
 	return (

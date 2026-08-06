@@ -3,6 +3,7 @@ import {
 	PropsWithChildren,
 	useContext,
 	useEffect,
+	useMemo,
 	useState,
 } from 'react'
 import { defaults, loadApp, saveApp } from '../storage'
@@ -11,15 +12,19 @@ import { useSystemTheme } from '../hooks/useSystemTheme'
 import { getCssVariable } from '../utils/getCssProperty'
 import { useAuth } from '../hooks/useAuth'
 import { loadBlob, upsertBlob } from '../utils/db'
+import { LobbyBroker } from '../utils/lobbyBroker'
 
 interface AppProviderProps {
 	app: PersistedApp
 	screen: Screen
+	lobbies: LobbyBroker
 	overlay: OverlayType
 	statsMode: 'player' | 'character'
+	activeLobby?: string
 	commit: (next: PersistedApp) => void
 	setScreen: (screen: Screen) => void
 	toggleTheme: () => void
+	setLobby: (lobby?: string) => void
 	setTheme: (theme: AppTheme) => void
 	setOverlay: (overlay: OverlayType) => void
 	setStatsMode: (mode: 'player' | 'character') => void
@@ -28,9 +33,12 @@ interface AppProviderProps {
 const AppContext = createContext<AppProviderProps>({
 	app: defaults,
 	screen: 'owned-sets',
+	lobbies: null as unknown as LobbyBroker,
 	overlay: undefined,
 	statsMode: 'player',
+	activeLobby: undefined,
 	commit: () => null,
+	setLobby: () => null,
 	setTheme: () => null,
 	setScreen: () => null,
 	setOverlay: () => null,
@@ -43,10 +51,16 @@ export const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
 	const [systemTheme] = useSystemTheme()
 	const [app, setApp] = useState(loadApp)
 	const [overlay, setOverlay] = useState<OverlayType>()
+	const [activeLobby, setLobby] = useState<string>()
 	const [statsMode, setStatsMode] = useState<'player' | 'character'>('player')
 	const [screen, setScreen] = useState<Screen>(() =>
 		app.ownedSetIds.length ? 'players' : 'owned-sets',
 	)
+	const lobbies = useMemo(() => new LobbyBroker(), [])
+
+	useEffect(() => {
+		lobbies.openConnection()
+	}, [])
 
 	useEffect(() => {
 		const effectiveTheme = app.theme === 'system' ? systemTheme : app.theme
@@ -102,9 +116,12 @@ export const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
 				app,
 				screen,
 				overlay,
+				lobbies,
 				statsMode,
+				activeLobby,
 				commit,
 				toggleTheme,
+				setLobby,
 				setTheme,
 				setScreen,
 				setOverlay,

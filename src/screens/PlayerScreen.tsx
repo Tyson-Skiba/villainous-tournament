@@ -98,6 +98,13 @@ export const PlayerScreen: React.FC<PlayerScreenProps> = () => {
 
 			<div className="sticky-action">
 				<Button
+					onClick={() => {
+						setScreen('lobby')
+					}}
+				>
+					Create Lobby
+				</Button>
+				<Button
 					disabled={!enoughCharacters}
 					onClick={() => {
 						startGame()
