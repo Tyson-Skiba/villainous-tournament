@@ -112,6 +112,7 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = () => {
 						await lobbies.startGame(lobbyCode, fixture)
 
 						setLobby(lobbyCode)
+						lobbies.clearLobby().createLobby()
 						setScreen('tournament')
 					}}
 				>

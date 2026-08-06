@@ -63,6 +63,11 @@ export class LobbyBroker {
 		throw new Error('Could not reserve a unique lobby code.')
 	}
 
+	clearLobby() {
+		this.currentLobby = undefined
+		return this
+	}
+
 	async createLobby() {
 		if (this.currentLobby) return this.currentLobby
 
