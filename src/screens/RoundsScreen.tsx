@@ -7,7 +7,8 @@ import { useSearchParams } from '../hooks/useUrlParams'
 interface RoundsScreenProps {}
 
 export const RoundsScreen: React.FC<RoundsScreenProps> = () => {
-	const { app, activeLobby, lobbies, commit, setScreen } = useAppContext()
+	const { app, activeLobby, lobbies, commit, setLobby, setScreen } =
+		useAppContext()
 	const {
 		game,
 		placements,
@@ -42,7 +43,10 @@ export const RoundsScreen: React.FC<RoundsScreenProps> = () => {
 			return
 		}
 
-		if (activeLobby) lobbies.finalise(activeLobby, game)
+		if (activeLobby) {
+			lobbies.finalise(activeLobby, game)
+			setLobby(undefined)
+		}
 
 		const gameRows = game.players
 			.flatMap((player) =>
