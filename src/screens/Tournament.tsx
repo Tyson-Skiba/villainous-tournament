@@ -31,7 +31,7 @@ export const TournamentScreen: React.FC<TournamentScreenProps> = () => {
 				)}
 				subtitle="One character per player per round. Each player gets one refresh for the whole game."
 			/>
-			<Rounds game={game} setGame={setGame} draftOwned={draftOwned} />
+			<Rounds game={game} setGame={setGame} />
 			<div className="sticky-action">
 				<Button
 					variant="secondary"
