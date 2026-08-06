@@ -11,7 +11,7 @@ import {
 	updateDoc,
 } from 'firebase/firestore'
 import { getAuth, signInAnonymously } from 'firebase/auth'
-import { GameResult, Lobby, LobbyPlayer } from '../types'
+import { Game, GameResult, Lobby, LobbyPlayer } from '../types'
 
 /* RULES
 
@@ -134,6 +134,13 @@ export class LobbyBroker {
 		await updateDoc(doc(db, 'lobbies', code), {
 			stateVersion: increment(1),
 			results,
+		})
+	}
+
+	async finalise(code: string, game: Game) {
+		await updateDoc(doc(db, 'lobbies', code), {
+			stateVersion: increment(1),
+			game,
 		})
 	}
 

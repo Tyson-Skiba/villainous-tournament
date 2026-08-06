@@ -42,6 +42,8 @@ export const RoundsScreen: React.FC<RoundsScreenProps> = () => {
 			return
 		}
 
+		if (activeLobby) lobbies.finalise(activeLobby, game)
+
 		const gameRows = game.players
 			.flatMap((player) =>
 				game.assignments[player.id].map((assignment) => ({

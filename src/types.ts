@@ -86,6 +86,7 @@ export interface Lobby {
 	stateVersion: number
 	created: number
 	results: GameResult
+	game?: Game
 }
 
 export interface LobbyPlayer {

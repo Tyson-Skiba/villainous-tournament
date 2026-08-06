@@ -5,6 +5,7 @@ import { Rounds } from '../components/Rounds'
 import { StepHeader } from '../components/StepHeader'
 import { LoadingScreen } from '../screens'
 import { useAppContext } from '../context'
+import { LeaderboardView } from './LeaderboardView'
 
 interface FixtureViewProps {
 	fixture: string
@@ -12,6 +13,7 @@ interface FixtureViewProps {
 
 export const FixtureView: React.FC<FixtureViewProps> = ({ fixture }) => {
 	const { activeLobby, lobbies } = useAppContext()
+	const [lobbyGame, setLobbyGame] = useState<Game>()
 	const [results, setResults] = useState<GameResult>()
 	const [game, setGame] = useState<Game | undefined>()
 
@@ -26,12 +28,13 @@ export const FixtureView: React.FC<FixtureViewProps> = ({ fixture }) => {
 		if (!activeLobby) return
 		return lobbies.waitForUpdates(activeLobby, (lobby) => {
 			if (lobby.results) setResults(lobby.results)
+			if (lobby.game) setLobbyGame(lobby.game)
 		})
 	}, [activeLobby])
 
 	if (!game) return <LoadingScreen />
 
-	// TODO: On final update show leaderboard
+	if (lobbyGame) return <LeaderboardView game={lobbyGame} />
 
 	return (
 		<div className="screen">
