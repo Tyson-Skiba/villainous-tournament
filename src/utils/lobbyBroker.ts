@@ -118,7 +118,7 @@ export class LobbyBroker {
 	}
 
 	async waitForGameToStart(code: string, onStart: (fixture: string) => void) {
-		onSnapshot(doc(db, 'lobbies', code), (snap) => {
+		return onSnapshot(doc(db, 'lobbies', code), (snap) => {
 			const lobby = snap.data()
 
 			if (lobby?.started) onStart(lobby.fixture)

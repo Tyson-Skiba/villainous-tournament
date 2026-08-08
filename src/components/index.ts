@@ -1,4 +1,5 @@
 export * from './Button'
+export * from './CodeInput'
 export * from './Counter'
 export * from './Error'
 export * from './NavBar'

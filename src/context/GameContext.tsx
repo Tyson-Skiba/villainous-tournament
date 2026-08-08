@@ -12,7 +12,7 @@ import { useAppContext } from './AppContext'
 import { newPlayer } from '../utils/newPlayer'
 import { buildAssignments } from '../utils'
 import { selectedVillains } from '../utils/data'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../hooks'
 
 interface GameProviderProps {
 	game?: Game

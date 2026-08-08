@@ -381,7 +381,7 @@ export function ordinal(n: number) {
 
 export async function shareFixture(game: Game) {
 	const fixture = await nativeCompress(JSON.stringify(game))
-	const url = `${window.location.protocol}//${window.location.host}?fixture=${fixture}`
+	const url = `${window.location.protocol}//${window.location.host}/fixture/${fixture}`
 	const data = {
 		title: 'Villainous Tournament',
 		text: 'Your Villainous Fixture Awaits - Who Will Win?',

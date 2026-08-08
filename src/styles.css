@@ -149,6 +149,7 @@ h1 {
 	margin: 0 0 10px;
 	letter-spacing: -0.03em;
 }
+.subtitle,
 .step-header p {
 	margin: 0;
 	color: var(--muted);
@@ -1279,6 +1280,10 @@ h1 {
 		background-color 0.2s ease;
 }
 
+.fnumber {
+	width: 2.8rem;
+}
+
 .rule {
 	height: 1rem;
 	margin-top: 1rem;
@@ -1324,6 +1329,10 @@ h1 {
 	}
 }
 
+.gap-05 {
+	gap: 0.5rem;
+}
+
 .gap-1 {
 	gap: 1rem;
 }
@@ -1344,4 +1353,35 @@ h1 {
 	justify-content: center;
 	align-items: center;
 	gap: 4px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+.number-input-container {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	align-items: center;
+}
+
+.number-input {
+	width: 50px;
+	height: 60px;
+	text-align: center;
+	font: inherit;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	margin-bottom: 1rem;
+	outline: none;
+	-moz-appearance: textfield;
+	-webkit-appearance: none;
+	margin: 0;
 }

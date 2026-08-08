@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { displayImage } from '../utils/data'
 import { leaderboard, characterLeaderboard, characterMatchups } from '../utils'
 import { StepHeader } from '../components'
-import { useOverlay } from '../hooks/useOverlay'
+import { useOverlay } from '../hooks'
 import { useAppContext } from '../context'
 
 interface StatsViewProps {}

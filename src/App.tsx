@@ -1,4 +1,3 @@
-import { useSearchParams } from './hooks/useUrlParams'
 import {
 	CollectionView,
 	FixtureView,
@@ -18,20 +17,17 @@ import {
 	StatsScreen,
 	TournamentScreen,
 } from './screens'
-import { useAppContext, useGameContext } from './context'
-import { useAntiFlicker } from './hooks/useAntiFlicker'
+import { useAppContext, useGameContext, useRouter } from './context'
+import { useAntiFlicker } from './hooks'
 
 const App = () => {
+	const { game } = useGameContext()
 	const { screen, overlay, setOverlay } = useAppContext()
-	const { game, draftOwned } = useGameContext()
-	const [searchParams] = useSearchParams()
+	const { params, isLobbyRoute, isFixtureRoute } = useRouter()
 	const render = useAntiFlicker(1000)
 
-	if (searchParams.get('fixture'))
-		return <FixtureView fixture={searchParams.get('fixture')!} />
-
-	if (searchParams.get('join')) return <JoinLobbyScreen />
-
+	if (isFixtureRoute) return <FixtureView fixture={params.fixture} />
+	if (isLobbyRoute) return <JoinLobbyScreen />
 	if (!render) return <LoadingScreen />
 
 	return (

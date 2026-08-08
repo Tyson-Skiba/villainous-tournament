@@ -34,7 +34,12 @@ export const FixtureView: React.FC<FixtureViewProps> = ({ fixture }) => {
 
 	if (!game) return <LoadingScreen />
 
-	if (lobbyGame) return <LeaderboardView game={lobbyGame} />
+	if (lobbyGame)
+		return (
+			<div className="screen">
+				<LeaderboardView game={lobbyGame} />
+			</div>
+		)
 
 	return (
 		<div className="screen">

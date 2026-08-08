@@ -102,7 +102,7 @@ export const PlayerScreen: React.FC<PlayerScreenProps> = () => {
 						setScreen('lobby')
 					}}
 				>
-					Create Lobby
+					Create lobby
 				</Button>
 				<Button
 					disabled={!enoughCharacters}
