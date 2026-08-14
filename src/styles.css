@@ -1387,12 +1387,3 @@ input[type='number'] {
 	-webkit-appearance: none;
 	margin: 0;
 }
-
-@media (display-mode: standalone), (display-mode: minimal-ui) {
-	#root {
-		background-image: linear-gradient(to bottom, var(--bg), var(--surface-4));
-		background-attachment: fixed;
-		background-size: cover;
-		min-height: 100vh;
-	}
-}
