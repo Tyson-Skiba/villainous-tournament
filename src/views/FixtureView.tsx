@@ -9,9 +9,13 @@ import { LeaderboardView } from './LeaderboardView'
 
 interface FixtureViewProps {
 	fixture: string
+	children?: React.ReactNode
 }
 
-export const FixtureView: React.FC<FixtureViewProps> = ({ fixture }) => {
+export const FixtureView: React.FC<FixtureViewProps> = ({
+	children,
+	fixture,
+}) => {
 	const { activeLobby, lobbies } = useAppContext()
 	const [lobbyGame, setLobbyGame] = useState<Game>()
 	const [results, setResults] = useState<GameResult>()
@@ -38,6 +42,7 @@ export const FixtureView: React.FC<FixtureViewProps> = ({ fixture }) => {
 		return (
 			<div className="screen">
 				<LeaderboardView game={lobbyGame} />
+				{children}
 			</div>
 		)
 

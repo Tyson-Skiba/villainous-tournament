@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore'
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { Game, GameResult, Lobby, LobbyPlayer } from '../types'
+import { nativeCompress } from './strings'
 
 /* RULES
 
@@ -156,4 +157,28 @@ export class LobbyBroker {
 
 		return snap.exists()
 	}
+}
+
+export const shareLobby = async (code: string) => {
+	const url = `${window.location.protocol}//${window.location.host}?join=${code}`
+	const data = {
+		title: 'Villainous Tournament',
+		text: 'You have been invited to join a game',
+		url,
+	}
+
+	if (navigator.share) navigator.share(data)
+	else navigator.clipboard.writeText(url)
+}
+
+export const shareFixture = async (game: Game) => {
+	const fixture = await nativeCompress(JSON.stringify(game))
+	const url = `${window.location.protocol}//${window.location.host}/fixture/${fixture}`
+	const data = {
+		title: 'Villainous Tournament',
+		text: 'Your Villainous Fixture Awaits - Who Will Win?',
+		url,
+	}
+
+	navigator.share(data)
 }

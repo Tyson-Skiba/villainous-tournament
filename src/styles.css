@@ -10,6 +10,7 @@
 	--surface: #1b1921;
 	--surface-2: #24212b;
 	--surface-3: #2d2935;
+	--surface-4: #000000;
 	--text: #f8f5ef;
 	--muted: #aaa4b3;
 	--border: #393441;
@@ -25,6 +26,7 @@
 	--surface: #fffdff;
 	--surface-2: #eee8f2;
 	--surface-3: #e2d9e8;
+	--surface-4: #ffffff;
 	--text: #1a1420;
 	--muted: #6d6473;
 	--border: #d5cadb;
@@ -1384,4 +1386,13 @@ input[type='number'] {
 	-moz-appearance: textfield;
 	-webkit-appearance: none;
 	margin: 0;
+}
+
+@media (display-mode: standalone), (display-mode: minimal-ui) {
+	#root {
+		background-image: linear-gradient(to bottom, var(--bg), var(--surface-4));
+		background-attachment: fixed;
+		background-size: cover;
+		min-height: 100vh;
+	}
 }

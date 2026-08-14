@@ -3,7 +3,7 @@ import {
 	useContext,
 	useState,
 	useEffect,
-	ReactNode,
+	PropsWithChildren,
 } from 'react'
 
 type ExtractRouteParams<T extends string> =
@@ -124,7 +124,7 @@ export const createRouter = <const T extends Record<string, string>>(
 ) => {
 	const RouteContext = createContext<RouteMatcherResult<T> | null>(null)
 
-	function RouteProvider({ children }: { children: ReactNode }) {
+	const RouteProvider: React.FC<PropsWithChildren> = ({ children }) => {
 		const [currentMatch, setCurrentMatch] = useState(() =>
 			matchUrlConfig(window.location.href, config),
 		)
@@ -152,7 +152,7 @@ export const createRouter = <const T extends Record<string, string>>(
 		)
 	}
 
-	function useRouter(): RouteMatcherResult<T> {
+	const useRouter = (): RouteMatcherResult<T> => {
 		const context = useContext(RouteContext)
 		if (!context) {
 			throw new Error(

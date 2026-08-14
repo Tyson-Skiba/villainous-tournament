@@ -2,6 +2,8 @@ import type { PersistedApp } from './types'
 
 export const STORAGE_KEY = 'villainous-draw'
 export const THEME_KEY = 'villainous-theme'
+const HOST_NAME_KEY = 'villainous-host'
+const GUEST_NAME_KEY = 'villainous-guest'
 
 export const defaults: PersistedApp = {
 	ownedSetIds: [],
@@ -14,7 +16,7 @@ export const defaults: PersistedApp = {
 	theme: 'dark',
 }
 
-export function loadApp(): PersistedApp {
+export const loadApp = (): PersistedApp => {
 	try {
 		const raw = localStorage.getItem(STORAGE_KEY)
 		if (!raw) return defaults
@@ -30,10 +32,17 @@ export function loadApp(): PersistedApp {
 	}
 }
 
-export function saveApp(app: PersistedApp) {
+export const saveApp = (app: PersistedApp) => {
 	localStorage.setItem(STORAGE_KEY, JSON.stringify(app))
 }
 
-export function clearGameOnly(app: PersistedApp) {
+export const clearGameOnly = (app: PersistedApp) => {
 	saveApp({ ...app, rounds: 2, players: app.players })
 }
+
+export const saveLobbyUsername = (name: string, host?: boolean) => {
+	localStorage.setItem(host ? HOST_NAME_KEY : GUEST_NAME_KEY, name)
+}
+
+export const getLobbyUsername = (host?: boolean) =>
+	localStorage.getItem(host ? HOST_NAME_KEY : GUEST_NAME_KEY) ?? ''

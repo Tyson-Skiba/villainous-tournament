@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import villainObjectives from '../../data/villains.json'
 import { villainSets, displayImage } from '../utils/data'
 import { Villain } from '../types'
 import { ObjectiveCard } from '../components/ObjectiveCard'
 
+import villainObjectives from '../../data/villains.json'
+
 const objectives = villainObjectives as Record<string, Villain>
 
-export function VillainsView() {
+export const VillainsView: React.FC = () => {
 	const [expanded, setExpanded] = useState<string[]>([])
 
 	return (

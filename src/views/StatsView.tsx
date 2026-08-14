@@ -1,7 +1,11 @@
 import { Trophy, Swords, Crown } from 'lucide-react'
 import { useState } from 'react'
-import { displayImage } from '../utils/data'
-import { leaderboard, characterLeaderboard, characterMatchups } from '../utils'
+import {
+	displayImage,
+	leaderboard,
+	characterLeaderboard,
+	characterMatchups,
+} from '../utils'
 import { StepHeader } from '../components'
 import { useOverlay } from '../hooks'
 import { useAppContext } from '../context'

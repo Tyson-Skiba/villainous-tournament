@@ -9,7 +9,7 @@ export const assetMap = new Map(
 	villainAssets.map((asset) => [asset.assetId, asset]),
 )
 
-export function displayImage(assetId: string, face: boolean = false) {
+export const displayImage = (assetId: string, face: boolean = false) => {
 	const asset = assetMap.get(assetId)
 
 	return {
@@ -20,13 +20,13 @@ export function displayImage(assetId: string, face: boolean = false) {
 	}
 }
 
-export function selectedVillains(ownedSetIds: string[]) {
+export const selectedVillains = (ownedSetIds: string[]) => {
 	return villainSets
 		.filter((set) => ownedSetIds.includes(set.id))
 		.flatMap((set) => set.villains)
 }
 
-export function villainCounts(ownedSetIds: string[]) {
+export const villainCounts = (ownedSetIds: string[]) => {
 	const counts = new Map<string, number>()
 	for (const villain of selectedVillains(ownedSetIds)) {
 		counts.set(villain, (counts.get(villain) ?? 0) + 1)
@@ -34,7 +34,16 @@ export function villainCounts(ownedSetIds: string[]) {
 	return counts
 }
 
-export function findSetForCharacter(character: string) {
+export const findSetForCharacter = (character: string) => {
 	const match = sets.find((s) => s.villains.includes(character))
 	return match ? match.name : 'Unknown'
+}
+
+export const shuffle = <T>(items: T[]) => {
+	const copy = [...items]
+	for (let i = copy.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1))
+		;[copy[i], copy[j]] = [copy[j], copy[i]]
+	}
+	return copy
 }

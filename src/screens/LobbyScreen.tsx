@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react'
 import { StepHeader, Button, Counter } from '../components'
 import { useAppContext, useGameContext } from '../context'
-import { shareLobby } from '../utils'
+import { shareLobby, nativeCompress } from '../utils'
 import { SquareArrowOutUpRight } from 'lucide-react'
-import { nativeCompress } from '../utils/strings'
+import { getLobbyUsername, saveLobbyUsername } from '../storage'
 
 interface LobbyScreenProps {}
 
 const playerId = crypto.randomUUID()
 
 export const LobbyScreen: React.FC<LobbyScreenProps> = () => {
-	const [name, setName] = useState('')
+	const [name, setName] = useState(getLobbyUsername(true))
 	const { lobbies, setScreen, setLobby } = useAppContext()
 	const {
-		game,
 		totalCopies,
 		draftRounds,
 		draftPlayers,
+		enoughCharacters,
+		enoughCharactersPerRound,
 		startGame,
 		setDraftRounds,
 		setDraftPlayers,
@@ -25,20 +26,46 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = () => {
 
 	useEffect(() => {
 		let unsubscribe: (() => void) | undefined
-		;(async () => {
+		let cancelled = false
+
+		void (async () => {
 			const code = await lobbies.createLobby()
 			setLobbyCode(code)
-			unsubscribe = lobbies.subscribe(code, (players) => {
+			const cleanup = lobbies.subscribe(code, (players) => {
 				setDraftPlayers((currentPlayers) => {
 					const host = currentPlayers.find(({ id }) => id === playerId)
 
 					return host ? [host, ...players] : players
 				})
 			})
+
+			if (cancelled) cleanup()
+			else unsubscribe = cleanup
 		})()
 
-		return unsubscribe
+		return () => {
+			;((cancelled = true), unsubscribe?.())
+		}
+	}, [lobbies])
+
+	useEffect(() => {
+		if (!name) return
+
+		addHostToPlayerList(name)
 	}, [])
+
+	const addHostToPlayerList = (hostName: string) => {
+		setDraftPlayers((players) =>
+			players.find(({ id }) => id === playerId)
+				? players.map((player) => {
+						if (player.id !== playerId) return player
+						player.name = hostName
+
+						return player
+					})
+				: [{ name: hostName, id: playerId }, ...players],
+		)
+	}
 
 	return (
 		<section>
@@ -67,26 +94,17 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = () => {
 					onChange={setDraftRounds}
 				/>
 			</div>
-
 			<input
 				className="field"
 				placeholder="Your name"
 				value={name}
 				onChange={(e) => {
 					setName(e.target.value)
-					setDraftPlayers((players) =>
-						players.find(({ id }) => id === playerId)
-							? players.map((player) => {
-									if (player.id !== playerId) return player
-									player.name = e.target.value
+					saveLobbyUsername(e.target.value, true)
 
-									return player
-								})
-							: [{ name: e.target.value, id: playerId }, ...players],
-					)
+					addHostToPlayerList(e.target.value)
 				}}
 			/>
-
 			<div className="round-block">
 				<div className="round-title">Players</div>
 				{draftPlayers.map((player, index) => (
@@ -95,6 +113,15 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = () => {
 					</div>
 				))}
 			</div>
+			<div className={`character-capacity ${enoughCharacters ? '' : 'error'}`}>
+				{draftPlayers.length} players · {totalCopies} character copies
+				{!enoughCharacters && <span>Play count exceeds character count.</span>}
+			</div>
+			{enoughCharactersPerRound ? null : (
+				<div className="character-capacity error">
+					<span>Not enough characters to avoid repeats — reduce rounds.</span>
+				</div>
+			)}
 			<div className="sticky-action">
 				<Button
 					variant="secondary"
@@ -105,7 +132,12 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = () => {
 					Cancel
 				</Button>
 				<Button
-					disabled={!draftPlayers.length || !name}
+					disabled={
+						!draftPlayers.length ||
+						!name ||
+						!enoughCharacters ||
+						!enoughCharactersPerRound
+					}
 					onClick={async () => {
 						const thisGame = startGame(false)
 						const fixture = await nativeCompress(JSON.stringify(thisGame))

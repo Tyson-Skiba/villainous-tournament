@@ -1,7 +1,6 @@
 import { StepHeader, Button } from '../components'
 import { useAppContext, useGameContext } from '../context'
-import { displayImage } from '../utils/data'
-import { ordinal } from '../utils'
+import { displayImage, ordinal } from '../utils'
 
 interface RoundsScreenProps {}
 
@@ -43,7 +42,10 @@ export const RoundsScreen: React.FC<RoundsScreenProps> = () => {
 		}
 
 		if (activeLobby) {
-			lobbies.finalise(activeLobby, game)
+			lobbies.finalise(activeLobby, {
+				...game,
+				roundResults: results,
+			})
 			setLobby(undefined)
 		}
 

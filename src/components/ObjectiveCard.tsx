@@ -1,5 +1,5 @@
 import React from 'react'
-import { parseObjective } from '../utils/parseObjective'
+import { parseObjective } from '../utils'
 
 interface ObjectiveCardProps {
 	name: string

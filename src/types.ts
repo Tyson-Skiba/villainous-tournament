@@ -98,3 +98,23 @@ export interface LobbyPlayer {
 export interface GameResult {
 	[x: number]: Record<string, number>
 }
+
+export interface CharacterStats {
+	character: string
+	appearances: number
+	wins: number
+	winRate: number
+	averagePlace: number
+	opponents: number
+	matchupScore: number
+}
+
+export interface CharacterMatchup {
+	character: string
+	opponent: string
+	wins: number
+	losses: number
+	ties: number
+	games: number
+	winRate: number
+}

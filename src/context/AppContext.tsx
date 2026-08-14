@@ -8,10 +8,8 @@ import {
 } from 'react'
 import { defaults, loadApp, saveApp } from '../storage'
 import { Screen, PersistedApp, AppTheme, OverlayType } from '../types'
-import { getCssVariable } from '../utils/getCssProperty'
 import { useAuth, useSystemTheme } from '../hooks'
-import { loadBlob, upsertBlob } from '../utils/db'
-import { LobbyBroker } from '../utils/lobbyBroker'
+import { getCssVariable, loadBlob, upsertBlob, LobbyBroker } from '../utils'
 
 interface AppProviderProps {
 	app: PersistedApp

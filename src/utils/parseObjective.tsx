@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function parseObjective(text: string): React.ReactNode[] {
+export const parseObjective = (text: string): React.ReactNode[] => {
 	if (!text) return []
 
 	const paragraphs = text

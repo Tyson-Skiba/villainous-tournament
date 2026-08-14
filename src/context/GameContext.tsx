@@ -9,9 +9,7 @@ import {
 } from 'react'
 import { Game, Player } from '../types'
 import { useAppContext } from './AppContext'
-import { newPlayer } from '../utils/newPlayer'
-import { buildAssignments } from '../utils'
-import { selectedVillains } from '../utils/data'
+import { buildAssignments, selectedVillains, newPlayer } from '../utils'
 import { useAuth } from '../hooks'
 
 interface GameProviderProps {
@@ -107,10 +105,11 @@ export const GameProvider: React.FC<PropsWithChildren> = ({ children }) => {
 		draftPlayers.length <= totalCopies &&
 		draftPlayers.every((p) => p.name.trim())
 	const currentRound = game?.currentRound ?? 1
-	const enoughCharactersPerRound = true // validateRounds(draftRounds, totalCopies);
+	const enoughCharactersPerRound = true // totalCopies >= draftRounds
 
 	const startGame = (allowCommit = true) => {
-		//if (!enoughCharacters) return
+		if (!enoughCharacters)
+			throw new Error('Not enough characters for each player')
 		const assignments = buildAssignments(draftPlayers, draftRounds, draftOwned)
 		const nextGame: Game = {
 			gameId: crypto.randomUUID(),

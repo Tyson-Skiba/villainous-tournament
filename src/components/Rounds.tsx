@@ -1,15 +1,18 @@
 import { Trophy, Crown } from 'lucide-react'
 import { RefreshButton } from './Button'
-import { displayImage, findSetForCharacter } from '../utils/data'
-import { rerollAssignment } from '../utils'
-import type { Game, GameResult, Player, Villain } from '../types'
-import villains from '../../data/villains.json'
+import {
+	displayImage,
+	findSetForCharacter,
+	rerollAssignment,
+	parseObjective,
+} from '../utils'
 import { StepHeader } from './StepHeader'
 import { useOverlay } from '../hooks'
-import { parseObjective } from '../utils/parseObjective'
 import { useGameContext } from '../context'
 import { useEffect } from 'react'
 
+import type { Game, GameResult, Player, Villain } from '../types'
+import villains from '../../data/villains.json'
 interface RoundProps {
 	game: Game
 	results?: GameResult
@@ -51,7 +54,7 @@ const playersByRoundResult = (
 	})
 }
 
-function getRoundWinner(game: Game, round: number, results?: GameResult) {
+const getRoundWinner = (game: Game, round: number, results?: GameResult) => {
 	if (!results) return
 	const roundResults = results[round]
 
